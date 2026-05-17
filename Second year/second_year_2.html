@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="photos/icon.png">
+  <title>Second year</title>
+  <style>
+
+    #background {
+      position: fixed;      
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: white;
+      background-size: cover;
+      z-index: -1;           
+    }
+
+    .foreground {
+      background-color: #f9f9fc;
+      border-top-left-radius: 30px; 
+      border-top-right-radius: 30px;
+      border-radius: 30px;
+      padding: 40px 20px;
+      max-width: 900px;
+      height: auto;
+      margin: 0 auto;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      color: #1a1a3d;
+    }
+
+    h3 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: 700;
+      font-size: 20px;
+      color: #000000;
+    }
+
+    .main-container {
+      max-width: 800px;
+      width: 100%;
+      justify-self: center;
+    }
+
+    .top-row,
+    .bottom-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 60px;
+      width: 100%;
+    }
+
+    .about-row {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 0;
+      width: 100%;
+    }
+
+    a {
+      display: inline-block;
+      color: #1a1a3d;
+      text-decoration: none;
+      max-width: 45%;
+      vertical-align: top;
+    }
+
+    p {
+      font-weight: 700;
+      font-size: 18px;
+      margin: 0 0 12px 0;
+      text-align: left;
+      transition: color 0.2s;
+    }
+
+    .lorem {
+      display: block;
+      text-align: left;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.5;
+      margin: 0;
+      transition: color 0.2s;
+    }
+
+    a:hover p {
+      color: rgb(231, 11, 48);
+    }
+
+    .lorem:hover {
+      color: rgb(231, 11, 48) !important;
+      cursor: pointer;
+    }
+    a:has(.lorem:hover) p {
+      color: #1a1a3d;
+    }
+
+    .about-row a p {
+      font-weight: 700;
+      font-size: 18px;
+      margin: 0 auto;
+      display: inline-block;
+      text-align: center;
+      max-width: 100%;
+    }
+
+    .about-row a {
+      max-width: 100%;
+    }
+
+    .img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 12px;
+    }
+
+    .back_btn {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #1a1a3d;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .next_btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #1a1a3d;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 30px;
+    }
+
+    .modal-overlay {
+        position: fixed;
+        inset: 0;
+        display: none;
+        place-items: center;
+        background: rgba(20, 20, 20, 0.55);
+        padding: 24px;
+        z-index: 1000;
+    }
+    .modal-overlay.is-open {
+        display: grid;
+    }
+    .modal {
+        width: min(680px, 100%);
+        max-height: min(90vh, 720px);
+        overflow-y: auto;
+        background: #fffdf7;
+        border-radius: 24px;
+        border: 1px solid rgba(36, 24, 20, 0.16);
+        box-shadow: 0 30px 80px rgba(36, 24, 20, 0.25);
+        padding: 28px 28px 22px;
+        position: relative;
+    }
+    .modal-close {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        border: none;
+        background: rgba(36, 24, 20, 0.08);
+        color: #1a1a3d;
+        font-size: 1.6rem;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    .modal-content {
+        display: grid;
+        gap: 18px;
+    }
+    .modal-label {
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 0.75rem;
+        color: #54633f;
+    }
+    .modal h3 {
+        margin: 0;
+        font-size: clamp(1.8rem, 3vw, 2.4rem);
+        color: #5f2d21;
+        text-align: left;
+    }
+    .modal-info {
+        display: grid;
+        gap: 14px;
+    }
+    .modal-info p {
+        margin: 0;
+        line-height: 1.7;
+        font-weight: normal;
+        text-align: left;
+    }
+    .modal-credits {
+        font-style: italic;
+        color: #666;
+        margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .foreground {
+            margin: 20px auto;
+            width: 90%;
+            padding: 30px 20px;
+            box-sizing: border-box;
+        }
+        .top-row, .bottom-row {
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+        .main-container {
+            margin-top: 10%;
+        }
+        a {
+            max-width: 100%;
+            width: 100%;
+        }
+        .nav-buttons {
+            gap: 15px;
+        }
+    }
+  </style>
+</head>
+<body>
+  <div id="background"></div>
+
+  <div class="foreground">
+      <h3>PROGETTI 2AA</h3>
+    
+    <div class="main-container">
+      <div class="top-row">
+        <a class="top" href="3d viewer.html">
+          <img src="photos/blender_vis.png" class="img" title="3D model">
+          <p>Modello 3D</p>
+          <span class="lorem modal-trigger" data-id="modello3d">More...</span>
+        </a>
+        <a class="top" href="map.html">
+          <img src="photos/ponti_treviso.png" class="img" title="Pontos map/e-book">
+          <p>Mappa ponte</p>
+          <span class="lorem modal-trigger" data-id="mappa">More...</span>
+        </a>
+      </div>
+      
+      <div class="bottom-row">
+        <a class="bottom" href="e-book.html">
+          <img src="photos/pantehon.jpg" class="img" title="E-book">
+          <p>E-book Pantheon</p>
+          <span class="lorem modal-trigger" data-id="ebook">More...</span>
+        </a>
+        <a class="bottom" href="oculo.html">
+          <img src="photos/Oculo.jpg" class="img" title="Oculo Pantheon">
+          <p>Oculo Pantheon</p>
+          <span class="lorem modal-trigger" data-id="oculo">More...</span>
+        </a>
+      </div>
+
+      <div class="about-row">
+        <a href="about-us_2.html">
+          <p>About us</p>
+        </a>
+      </div>
+    </div>
+    
+    <br>
+    <div class="nav-buttons">
+      <a href="second_year.html" style="max-width: fit-content; width: auto;">
+        <button class="back_btn">Back</button>
+      </a>
+      
+      <a href="second_year_3.html" style="max-width: fit-content; width: auto;">
+        <button class="next_btn">Next</button>
+      </a>
+    </div>
+  </div>
+
+  <div class="modal-overlay" aria-hidden="true">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+          <button type="button" class="modal-close" aria-label="Chiudi popup">×</button>
+          <div class="modal-content">
+              <p class="modal-label">Scheda Progetto</p>
+              <h3 id="modal-title"></h3>
+              <div class="modal-info">
+                  <p class="modal-description"></p>
+                  <p class="modal-credits"></p>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <script>
+      const modalData = {
+          "modello3d": {
+              title: "Modello 3D",
+              description: "Questo progetto è la realizzazione di 2 modelli 3D di un ponte romano, il primo meno complesso mostra la forma base di un ponte, il secondo mostra oltre a la struttura anche l'ambiente e possibili aggiunte che potevano essere presenti, questo progetto è interrativo da computer ma da telefono usando la AR (Augmented Reality) si può far apparire uno dei due ponti a scelta nella propria abitazione rendendolo immersivo.",
+              credits: "Credits: Casellato Marco, Lucchetta Alberto."
+          },
+          "mappa": {
+              title: "Mappa ponte",
+              description: "Treviso sull'acqua è un e-book che mostra i ponti principali di Treviso, facendo capire quanto sia basata sull'acqua questa città, in aggiunta i nostri compagni hanno creato anche una mappa interrativa che mostra oltre ai principali anche tutti gli altri ponti.",
+              credits: "Credits: Carraro Elena, Chimienti Martina, Dal Pozzo Greta."
+          },
+          "ebook": {
+              title: "E-book Pantheon",
+              description: "I segreti del Pantheon è un e-book che parla della cupola del famosisimo edificio, partendo da una descrizione generale per poi arrivare ai giochi di luce, le divinità, le tombe per finire con una raccolta di leggende e curiosità.",
+              credits: "Credits: Bernardi Giacomo Maria, Carraro Elena, Casellato Marco, Chimienti Martina, Dal Pozzo Greta, Dosca Daniela, Garzetta Jacopo, Lisei Ilaria, Sanson Alessio, Tuci Niccolo, Zaghloul Maya, Zanon Leonardo."
+          },
+          "oculo": {
+              title: "Oculo Pantheon",
+              description: "Il Pantheon è un sito realizzato con in mente l'idea di spiegare questa meraviglia architettonica, ha una raccolta di immagini, descrizioni tecniche e un estratto di storia molto coinvolgente.",
+              credits: "Credits: Bellomo Giuseppe, Bosco Caterina, Marotto Davide, Semenzato Sofia."
+          }
+      };
+
+      const modalOverlay = document.querySelector(".modal-overlay");
+      const modalTitle = document.querySelector("#modal-title");
+      const modalDescription = document.querySelector(".modal-description");
+      const modalCredits = document.querySelector(".modal-credits");
+      const modalClose = document.querySelector(".modal-close");
+
+      const openModal = (id) => {
+          const data = modalData[id];
+          if (data) {
+              modalTitle.textContent = data.title;
+              modalDescription.textContent = data.description;
+              modalCredits.textContent = data.credits;
+              
+              modalOverlay.classList.add("is-open");
+              modalOverlay.setAttribute("aria-hidden", "false");
+          }
+      };
+
+      const closeModal = () => {
+          modalOverlay.classList.remove("is-open");
+          modalOverlay.setAttribute("aria-hidden", "true");
+      };
+
+      document.querySelectorAll(".modal-trigger").forEach(trigger => {
+          trigger.addEventListener("click", (e) => {
+              e.preventDefault();
+              const id = trigger.getAttribute("data-id");
+              openModal(id);
+          });
+      });
+
+      modalClose.addEventListener("click", closeModal);
+      modalOverlay.addEventListener("click", (event) => {
+          if (event.target === modalOverlay) closeModal();
+      });
+      document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape" && modalOverlay.classList.contains("is-open")) {
+              closeModal();
+          }
+      });
+  </script>
+</body>
+</html>

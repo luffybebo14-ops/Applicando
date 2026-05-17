@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="photos/icon.png">
+    <title>Villa di Livia Drusilla</title>
+
+    <style>
+        :root {
+            --sand: #efe1c5;
+            --stone: #c9ad7f;
+            --terracotta: #8f4a32;
+            --wine: #5f2d21;
+            --olive: #54633f;
+            --ink: #241814;
+            --cream: rgba(255, 248, 235, 0.9);
+            --shadow: 0 20px 45px rgba(36, 24, 20, 0.18);
+        }
+
+        .video-container {
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        html{
+            transition: 10s;
+            scroll-behavior: smooth;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            color: var(--ink);
+            background:
+                linear-gradient(rgba(84, 99, 63, 0.15), rgba(84, 99, 63, 0.15)),
+                radial-gradient(circle at top, rgba(255, 237, 198, 0.65), transparent 36%),
+                linear-gradient(180deg, #b98358 0%, #d7bc8b 38%, #f2e4c8 100%);
+            line-height: 1.7;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+        }
+
+        .hero {
+            position: relative;
+            min-height: 92vh;
+            display: grid;
+            place-items: center;
+            padding: 48px 24px;
+            background: linear-gradient(rgba(72, 42, 27, 0.45), rgba(72, 42, 27, 0.72)),
+                        url("image/IMG_1895.JPG") center/cover no-repeat;
+            overflow: hidden;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                repeating-linear-gradient(90deg, rgba(255, 231, 194, 0.07) 0 3px, transparent 3px 120px),
+                linear-gradient(180deg, rgba(255, 240, 214, 0.08), rgba(0, 0, 0, 0));
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 860px;
+            text-align: center;
+            color: #fff6ea;
+            z-index: 1;
+        }
+
+        .eyebrow,
+        .section-label {
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .hero h1 {
+            margin: 12px 0 18px;
+            font-size: clamp(2.8rem, 7vw, 5.6rem);
+            line-height: 0.95;
+        }
+
+        .lead {
+            max-width: 720px;
+            margin: 0 auto;
+            font-size: 1.15rem;
+        }
+
+        .hero-link {
+            display: inline-block;
+            margin-top: 28px;
+            padding: 14px 26px;
+            border: 1px solid rgba(255, 246, 234, 0.7);
+            border-radius: 999px;
+            color: #fff6ea;
+            text-decoration: none;
+            background: rgba(143, 74, 50, 0.34);
+            transition: transform 0.25s ease, background 0.25s ease;
+        }
+
+        .hero-link:hover {
+            transform: translateY(-2px);
+            background: rgba(143, 74, 50, 0.58);
+        }
+
+        main {
+            width: min(1180px, calc(100% - 32px));
+            margin: -72px auto 56px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-card {
+            background: var(--cream);
+            border: 1px solid rgba(95, 45, 33, 0.14);
+            border-radius: 28px;
+            box-shadow: var(--shadow);
+            padding: 32px;
+            -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
+        }
+
+        .intro,
+        .closing {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 28px;
+            align-items: start;
+            grid-auto-rows: minmax(min-content, max-content);
+        }
+
+        .text-block h2,
+        .section-heading h2 {
+            margin: 6px 0 14px;
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            line-height: 1.05;
+            color: var(--wine);
+        }
+
+        .photo-stack {
+            display: grid;
+            gap: 18px;
+        }
+
+        .photo-stack img,
+        .single-photo img {
+            height: 100%;
+            object-fit: cover;
+            border-radius: 22px;
+            border: 4px solid rgba(255, 248, 235, 0.8);
+            box-shadow: 0 16px 34px rgba(95, 45, 33, 0.18);
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin: 22px 0;
+        }
+
+        .mini-card {
+            padding: 24px;
+            border-radius: 24px;
+            background: linear-gradient(180deg, rgba(255, 247, 232, 0.9), rgba(228, 206, 165, 0.82));
+            border: 1px solid rgba(95, 45, 33, 0.12);
+            box-shadow: var(--shadow);
+        }
+
+        .mini-card h3,
+        .species-panel h3 {
+            margin-top: 0;
+            color: var(--terracotta);
+        }
+
+        .full-width {
+            margin-top: 22px;
+        }
+
+        .section-heading {
+            max-width: 800px;
+        }
+
+        .content-columns {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+            margin-top: 24px;
+            align-items: start;
+        }
+
+        .species-panel {
+            background: rgba(255, 251, 242, 0.72);
+            border-radius: 24px;
+            padding: 24px;
+            border: 1px solid rgba(84, 99, 63, 0.18);
+        }
+
+        .species-list {
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px 24px;
+            list-style: none;
+        }
+
+        .species-list li {
+            margin: 0;
+            position: relative;
+        }
+
+        .species-hint {
+            margin: 0 0 14px;
+            font-size: 0.95rem;
+            color: var(--ink);
+            opacity: 0.8;
+        }
+
+        .note {
+            margin-top: 18px;
+            padding: 14px 16px;
+            border-left: 4px solid var(--olive);
+            background: rgba(84, 99, 63, 0.08);
+            border-radius: 10px;
+        }
+
+        .ebook-container {
+            margin-top: 24px;
+            width: 100%;
+            height: 480px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 12px 28px rgba(95, 45, 33, 0.15);
+            border: 1px solid rgba(84, 99, 63, 0.12);
+        }
+
+        .ebook-container iframe,
+        .ebook-container video {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            object-fit: cover; 
+        }
+
+        .bird-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 22px;
+        }
+
+        .bird-card {
+            display: grid;
+            gap: 16px;
+            padding: 18px;
+            border-radius: 20px;
+            background: linear-gradient(180deg, rgba(255, 246, 228, 0.95), rgba(228, 214, 180, 0.9));
+            border: 1px solid rgba(95, 45, 33, 0.14);
+        }
+
+        .bird-photo {
+            min-height: 220px;
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .bird-photo img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .placeholder-photo {
+            display: grid;
+            place-items: center;
+            padding: 18px;
+            text-align: center;
+            background:
+                linear-gradient(135deg, rgba(143, 74, 50, 0.14), rgba(84, 99, 63, 0.18)),
+                repeating-linear-gradient(45deg, rgba(255, 248, 235, 0.3) 0 12px, rgba(201, 173, 127, 0.24) 12px 24px);
+            border: 2px dashed rgba(95, 45, 33, 0.24);
+            color: var(--wine);
+            font-weight: 700;
+        }
+
+        .bird-card-content h4 {
+            margin: 4px 0 10px;
+            font-size: 1.4rem;
+            color: var(--wine);
+        }
+
+        .bird-tag {
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-size: 0.72rem;
+            color: var(--terracotta);
+            font-weight: 700;
+        }
+
+        .sound-button {
+            margin-top: 10px;
+            border: none;
+            border-radius: 999px;
+            padding: 14px 22px;
+            background: linear-gradient(180deg, var(--terracotta), var(--wine));
+            color: #fff8ee;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 14px 24px rgba(95, 45, 33, 0.22);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .bird-photo img[data-bird-id] {
+            cursor: pointer;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            display: none;
+            place-items: center;
+            background: rgba(20, 20, 20, 0.55);
+            padding: 24px;
+            z-index: 1000;
+        }
+
+        .modal-overlay.is-open {
+            display: grid;
+        }
+
+        .modal {
+            width: min(680px, 100%);
+            max-height: min(90vh, 720px);
+            overflow-y: auto;
+            background: #fffdf7;
+            border-radius: 24px;
+            border: 1px solid rgba(36, 24, 20, 0.16);
+            box-shadow: 0 30px 80px rgba(36, 24, 20, 0.25);
+            padding: 28px 28px 22px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            border: none;
+            background: rgba(36, 24, 20, 0.08);
+            color: var(--ink);
+            font-size: 1.6rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .modal-content {
+            display: grid;
+            gap: 18px;
+        }
+
+        .modal-label {
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            font-size: 0.75rem;
+            color: var(--olive);
+        }
+
+        .modal h3 {
+            margin: 0;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            color: var(--wine);
+        }
+
+        .modal-info {
+            display: grid;
+            gap: 14px;
+        }
+
+        .modal-info p {
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        .modal dl {
+            margin: 0;
+            display: grid;
+            gap: 10px;
+        }
+
+        .modal dt {
+            font-weight: 700;
+            color: var(--terracotta);
+        }
+
+        .modal dd {
+            margin: 0;
+            padding-left: 8px;
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        .sound-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 28px rgba(95, 45, 33, 0.28);
+        }
+
+        .info-button {
+            margin-top: 10px;
+            border: none;
+            border-radius: 999px;
+            padding: 14px 22px;
+            background: linear-gradient(180deg, var(--olive), #354328);
+            color: #fff8ee;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 14px 24px rgba(95, 45, 33, 0.22);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .info-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 28px rgba(95, 45, 33, 0.28);
+        }
+
+        .plant-button {
+            display: inline-flex;
+            align-items: center;
+            width: 100%;
+            text-align: left;
+            padding: 10px 14px;
+            margin: 4px 0;
+            border: 1px solid rgba(84, 99, 63, 0.24);
+            border-radius: 16px;
+            background: rgba(255, 251, 242, 0.9);
+            color: var(--ink);
+            font: inherit;
+            cursor: pointer;
+            transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .plant-button:hover,
+        .plant-button:focus {
+            transform: translateY(-1px);
+            background: rgba(228, 214, 180, 0.96);
+            box-shadow: 0 12px 22px rgba(95, 45, 33, 0.18);
+        }
+
+        .sound-button.is-playing {
+            background: linear-gradient(180deg, var(--olive), #354328);
+        }
+
+        .closing {
+            margin-top: 22px;
+        }
+
+        @media (max-width: 900px) {
+            main {
+                margin-top: -36px;
+            }
+
+            .intro,
+            .closing,
+            .highlight-grid,
+            .content-columns {
+                grid-template-columns: 1fr;
+            }
+
+            .species-list {
+                grid-template-columns: 1fr;
+                padding-left: 0;
+            }
+
+            .bird-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .bird-card {
+                grid-template-columns: 1fr;
+            }
+
+            .species-list {
+                columns: 1;
+            }
+            
+            .ebook-container {
+                height: 350px; 
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero {
+                min-height: 78vh;
+                padding: 32px 18px;
+            }
+
+            .section-card,
+            .mini-card {
+                padding: 22px;
+            }
+
+            .lead {
+                font-size: 1rem;
+            }
+        }
+
+        .video {
+            width: 100%;
+            border-radius: 22px;
+            border: 4px solid rgba(255, 248, 235, 0.8);
+            box-shadow: 0 16px 34px rgba(95, 45, 33, 0.18);
+        }
+
+        .review-section {
+            margin-top: 28px;
+            text-align: center;
+        }
+
+        .review-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .review-content h2 {
+            margin: 0 0 12px 0;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: var(--wine);
+        }
+
+        .review-question {
+            margin: 12px 0 24px 0;
+            font-size: 1.1rem;
+            color: var(--stone);
+        }
+
+        .review-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .review-rating {
+            text-align: center;
+            background: rgba(95, 45, 33, 0.06);
+            padding: 20px 18px;
+            border-radius: 20px;
+            border: 1px solid rgba(95, 45, 33, 0.12);
+        }
+
+        .star-rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            gap: 12px;
+            margin: 16px 0 12px 0;
+        }
+
+        .star-rating input {
+            display: none;
+        }
+
+        .star {
+            font-size: 3.2rem;
+            cursor: pointer;
+            color: #d4a574;
+            transition: all 0.2s ease;
+            text-shadow: 1px 1px 2px rgba(36, 24, 20, 0.1);
+            filter: drop-shadow(0 2px 4px rgba(95, 45, 33, 0.15));
+            -webkit-text-stroke: 2px #c9ad7f;
+            text-stroke: 2px #c9ad7f;
+        }
+
+        .star:hover,
+        .star:hover ~ .star {
+            color: #d4a574;
+            transform: scale(1.15);
+            filter: drop-shadow(0 4px 8px rgba(95, 45, 33, 0.25));
+        }
+
+        .star-rating input:checked ~ .star,
+        .star-rating input:checked ~ .star ~ .star {
+            color: var(--terracotta);
+            -webkit-text-stroke: 0px;
+            text-stroke: 0px;
+            filter: drop-shadow(0 6px 12px rgba(143, 74, 50, 0.35));
+        }
+
+        .rating-message {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: var(--wine);
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .rating-message.show {
+            opacity: 1;
+            height: auto;
+            margin-bottom: 0;
+        }
+
+        .review-textarea-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .review-textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 20px;
+            border: 2px solid #c9ad7f;
+            border-radius: 20px;
+            background: rgba(255, 251, 242, 0.95);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1rem;
+            color: var(--ink);
+            resize: vertical;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+            box-shadow: inset 0 2px 6px rgba(36, 24, 20, 0.05);
+        }
+
+        .review-textarea::placeholder {
+            color: var(--stone);
+            font-weight: 600;
+            opacity: 0.7;
+            font-size: 1.05rem;
+        }
+
+        .review-textarea:focus {
+            outline: none;
+            border-color: var(--terracotta);
+            background: rgba(255, 248, 235, 1);
+            box-shadow: 0 0 0 3px rgba(143, 74, 50, 0.15), 0 8px 24px rgba(143, 74, 50, 0.2);
+        }
+
+        .counter-label {
+            text-align: center;
+        }
+        .page-credits {
+            text-align: center;
+        }
+
+        .back_btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: rgb(95, 45, 33);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header class="hero">
+        <img src="photos/icon.png" alt="Icona della villa di Livia Drusilla" style="width: 60px; height: 60px; margin-left: 90%;">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <p class="eyebrow">Antica Roma • Prima Porta</p>
+            <h1>La Villa di Livia Drusilla</h1>
+            <p class="lead">
+                Un luogo dove arte, natura e potere si incontrano: la residenza della moglie di Augusto custodiva
+                ambienti raffinati e un giardino dipinto che ancora oggi ci fa immaginare il fascino della Roma
+                imperiale.
+            </p>
+            <a class="hero-link" href="#flora-fauna">Scopri piante e uccelli</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="intro section-card">
+            <div class="text-block">
+                <p class="section-label">Introduzione</p>
+                <h2>Una villa immersa nella bellezza</h2>
+                <p>
+                    La Villa di Livia Drusilla si trova a Prima Porta, poco fuori Roma, ed era una delle residenze più
+                    eleganti legate alla famiglia imperiale. Appartenne a Livia Drusilla, moglie dell'imperatore
+                    Augusto, e divenne famosa soprattutto per la straordinaria sala ipogea decorata con affreschi che
+                    ricreano un giardino ideale.
+                </p>
+                <p>
+                    Entrando in questo ambiente si ha l'impressione di essere circondati da un giardino eterno: alberi
+                    da frutto, arbusti fioriti, erbe profumate e molti uccelli sono dipinti con grande precisione.
+                    Quegli
+                    affreschi non sono soltanto una meraviglia visiva, ma anche una testimonianza delle specie botaniche
+                    e faunistiche che i Romani apprezzavano e utilizzavano como simboli di pace, abbondanza e
+                    rigenerazione.
+                </p>
+                <p>
+                    In questa pagina puoi esplorare le piante e gli uccelli riconosciuti dagli studiosi, aprire le
+                    schede
+                    botaniche e ornitologiche e conoscere il valore storico di ogni specie nel contesto del giardino
+                    romano.
+                </p>
+            </div>
+            <div class="photo-stack">
+                <img src="image/IMG_1895.JPG" alt="Vista della Villa di Livia Drusilla">
+                <img src="image/IMG_1896.JPG" alt="Dettaglio degli ambienti della villa">
+            </div>
+        </section>
+
+        <section class="highlight-grid">
+            <article class="mini-card">
+                <h3>Perché è importante</h3>
+                <p>
+                    La villa mostra come i Romani più ricchi unissero lusso, natura e simboli di prestigio in un unico
+                    spazio abitativo.
+                </p>
+            </article>
+            <article class="mini-card">
+                <h3>Il giardino dipinto</h3>
+                <p>
+                    Gli affreschi creano l'illusione di un giardino senza stagioni, sempre verde e pieno di vita.
+                </p>
+            </article>
+            <article class="mini-card">
+                <h3>Un messaggio politico</h3>
+                <p>
+                    L'abbondanza di frutti, fiori e animali suggerisce prosperità, pace e armonia sotto il potere di
+                    Augusto.
+                </p>
+            </article>
+        </section>
+
+        <section id="flora-fauna" class="section-card full-width">
+            <div class="section-heading">
+                <p class="section-label">Flora e fauna</p>
+                <h2>Piante e uccelli che possiamo osservare nella villa</h2>
+                <p>
+                    Negli affreschi del famoso giardino sotterraneo compaiono molte specie botaniche e diversi uccelli.
+                    Ecco i principali elementi riconosciuti dagli studiosi.
+                </p>
+            </div>
+
+            <div class="content-columns">
+                <article class="species-panel">
+                    <h3>Piante raffigurate</h3>
+                    <p class="species-hint">Tocca un nome per aprire la scheda botanica.</p>
+                    <ul class="species-list">
+                        <li><button class="plant-button" type="button" data-plant-id="alloro">Alloro</button></li>
+                        <li><button class="plant-button" type="button" data-plant-id="melograno">Melograno</button></li>
+                        <li><button class="plant-button" type="button" data-plant-id="pino-domestico">Pino
+                                domestico</button></li>
+                        <li><button class="plant-button" type="button" data-plant-id="quercia">Quercia</button></li>
+                        <li><button class="plant-button" type="button" data-plant-id="abete">Abete</button></li>
+                        <li><button class="plant-button" type="button" data-plant-id="cipresso">Cipresso</button></li>
+                        <li><button class="plant-button" type="button" data-plant-id="oleandro">Oleandro</button></li>
+                        <li><button class="plant-button" type="button" data-plant-id="mirto">Mirto</button></li>
+                        <li><button class="plant-button" type="button" data-plant-id="rosmarino">Rosmarino</button></li>
+                        <li><button class="plant-button" type="button" data-plant-id="allium">Allium o cipolla
+                                selvatica</button></li>
+                        <li><button class="plant-button" type="button" data-plant-id="camomilla">Camomilla</button></li>
+                        <li><button class="plant-button" type="button" data-plant-id="papavero">Papavero</button></li>
+                        <li><button class="plant-button" type="button" data-plant-id="iris">Iris</button></li>
+                        <li><button class="plant-button" type="button" data-plant-id="margherita">Margherita</button>
+                        </li>
+                        <li><button class="plant-button" type="button" data-plant-id="viola">Viola</button></li>
+                        <li><button class="plant-button" type="button" data-plant-id="rosa">Rosa</button></li>
+                        <li><button class="plant-button" type="button" data-plant-id="corbezzolo">Corbezzolo</button>
+                        </li>
+                        <li><button class="plant-button" type="button" data-plant-id="mirabolano">Mirabolano o
+                                susino</button></li>
+                        <li><button class="plant-button" type="button" data-plant-id="cotogno">Cotogno</button></li>
+                        <li><button class="plant-button" type="button" data-plant-id="pero">Pero</button></li>
+                        <li><button class="plant-button" type="button" data-plant-id="fico">Fico</button></li>
+                        <li><button class="plant-button" type="button" data-plant-id="palma-da-dattero">Palma da
+                                dattero</button></li>
+                        <li><button class="plant-button" type="button" data-plant-id="acanto">Acanto</button></li>
+                        <li><button class="plant-button" type="button" data-plant-id="edera">Edera</button></li>
+                    </ul>
+                </article>
+
+                <article class="species-panel">
+                    <h3>Uccelli riconoscibili</h3>
+                    <ul class="species-list">
+                        <li>Merlo</li>
+                        <li>Passero</li>
+                        <li>Tortora</li>
+                        <li>Pernice</li>
+                        <li>Pavone</li>
+                        <li>Ghiandaia</li>
+                        <li>Ballerina o piccolo uccello di riva</li>
+                        <li>Gallinella purpurea</li>
+                        <li>Airone bianco o garzetta</li>
+                        <li>Usignolo</li>
+                        <li>Uccelli in volo tra i rami e tra i cespugli ornamentali</li>
+                    </ul>
+                    <p class="note">
+                        Alcune identificazioni possono variare negli studi moderni, ma tutte mostrano l'idea di un
+                        giardino animato, ricco e armonioso.
+                    </p>
+                    
+                    <div class="ebook-container">
+                        <video id="canvaVideo" autoplay muted loop playsinline>
+                            <source src="image/ucelli_video.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section style="margin-top: 18px;" class="section-card">
+            <div class="bird-gallery">
+                <article class="bird-card">
+                    <div class="bird-photo">
+                        <img src="image/merlo1.png" alt="Merlo" data-bird-id="merlo">
+                    </div>
+                    <div class="bird-card-content">
+                        <p class="bird-tag">Uccello</p>
+                        <h4>Merlo</h4>
+                        <button class="sound-button" type="button" data-audio="audio/merlo.mp3">Ascolta il
+                            suono</button>
+                    </div>
+                </article>
+
+                <article class="bird-card">
+                    <div class="bird-photo">
+                        <img src="image/passero.png" alt="Passero" data-bird-id="passero">
+                    </div>
+                    <div class="bird-card-content">
+                        <p class="bird-tag">Uccello</p>
+                        <h4>Passero</h4>
+                        <button class="sound-button" type="button" data-audio="audio/passero.mp3">Ascolta il
+                            suono</button>
+                    </div>
+                </article>
+
+                <article class="bird-card">
+                    <div class="bird-photo ">
+                        <img src="image/tortora.png" alt="Tortora" data-bird-id="tortora">
+                    </div>
+                    <div class="bird-card-content">
+                        <p class="bird-tag">Uccello</p>
+                        <h4>Tortora</h4>
+                        <button class="sound-button" type="button" data-audio="audio/tortora.mp3">Ascolta il
+                            suono</button>
+                    </div>
+                </article>
+
+                <article class="bird-card">
+                    <div class="bird-photo">
+                        <img src="image/pernice.png" alt="Pernice" data-bird-id="pernice">
+                    </div>
+                    <div class="bird-card-content">
+                        <p class="bird-tag">Uccello</p>
+                        <h4>Pernice</h4>
+                        <button class="sound-button" type="button" data-audio="audio/pernice.mp3">Ascolta il
+                            suono</button>
+                    </div>
+                </article>
+
+                <article class="bird-card">
+                    <div class="bird-photo ">
+                        <img src="image/pavone.png" alt="Pavone" data-bird-id="pavone">
+                    </div>
+                    <div class="bird-card-content">
+                        <p class="bird-tag">Uccello</p>
+                        <h4>Pavone</h4>
+                        <button class="sound-button" type="button" data-audio="audio/pavone.mp3">Ascolta il
+                            suono</button>
+                    </div>
+                </article>
+
+                <article class="bird-card">
+                    <div class="bird-photo">
+                        <img src="image/ghiandaia.png" alt="Ghiandaia" data-bird-id="ghiandaia">
+                    </div>
+                    <div class="bird-card-content">
+                        <p class="bird-tag">Uccello</p>
+                        <h4>Ghiandaia</h4>
+                        <button class="sound-button" type="button" data-audio="audio/ghiandaia.mp3">Ascolta il
+                            suono</button>
+                    </div>
+                </article>
+
+                <article class="bird-card">
+                    <div class="bird-photo ">
+                        <img src="image/ballerina.png" alt="Ballerina o piccolo uccello di riva"
+                            data-bird-id="ballerina">
+                    </div>
+                    <div class="bird-card-content">
+                        <p class="bird-tag">Uccello</p>
+                        <h4>Ballerina o piccolo uccello di riva</h4>
+                        <button class="sound-button" type="button" data-audio="audio/Ballerina.mp3">Ascolta il
+                            suono</button>
+                    </div>
+                </article>
+
+                <article class="bird-card">
+                    <div class="bird-photo">
+                        <img src="image/gallinella-purpurea.png" alt="Gallinella purpurea"
+                            data-bird-id="gallinella-purpurea">
+                    </div>
+                    <div class="bird-card-content">
+                        <p class="bird-tag">Uccello</p>
+                        <h4>Gallinella purpurea</h4>
+                        <button class="sound-button" type="button" data-audio="audio/Gallinella-purpurea.mp3">Ascolta il
+                            suono</button>
+                    </div>
+                </article>
+
+                <article class="bird-card">
+                    <div class="bird-photo">
+                        <img src="image/airone.png" alt="Airone bianco o garzetta" data-bird-id="airone">
+                    </div>
+                    <div class="bird-card-content">
+                        <p class="bird-tag">Uccello</p>
+                        <h4>Airone bianco o garzetta</h4>
+                        <button class="sound-button" type="button" data-audio="audio/airone.mp3">Ascolta il
+                            suono</button>
+                    </div>
+                </article>
+
+                <article class="bird-card">
+                    <div class="bird-photo">
+                        <img src="image/usignolo.png" alt="Usignolo" data-bird-id="usignolo">
+                    </div>
+                    <div class="bird-card-content">
+                        <p class="bird-tag">Uccello</p>
+                        <h4>Usignolo</h4>
+                        <button class="sound-button" type="button" data-audio="audio/usignolo.mp3">Ascolta il
+                            suono</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section style="margin-top: 18px; width: 100%;" class="section-card">
+    		<div style="width: 100%; overflow: hidden; border-radius: 20px; background: #000;">
+        		<video 
+            		autoplay 
+            		muted 
+            		loop 
+            		playsinline 
+            		controls
+            		style="width: 100%; height: auto; display: block; max-height: 80vh; object-fit: cover;"
+        		>
+            		<source src="image/giardino_animato_video.mp4" type="video/mp4">
+        		</video>
+    		</div>
+		</section>
+
+        <section class="section-card closing">
+            <div class="text-block">
+                <p class="section-label">Conclusione</p>
+                <h2>Un angolo di natura eterna nell'antica Roma</h2>
+                <p>
+                    La Villa di Livia Drusilla non è soltanto un edificio antico: è una finestra sul gusto romano per
+                    il paesaggio, per il simbolo e per la bellezza. Le piante e gli uccelli dipinti trasformano le
+                    pareti in un giardino ideale, capace ancora oggi di stupire chi lo osserva.
+                </p>
+
+            </div>
+            <div class="single-photo">
+                <img src="image/IMG_1897.JPG" alt="Decorazioni e atmosfera della Villa di Livia">
+            </div>
+
+            <a href="second_year_3.html">
+               <button class="back_btn">Back</button>
+            </a>
+        </section>
+
+        <section class="section-card review-section">
+            <div class="review-content">
+                <h2>Ti è piaciuto il sito?</h2>
+                <p class="review-question">Condividi il tuo gradimento con una valutazione:</p>
+                <div class="review-container">
+                    <div class="review-rating">
+                        <div class="star-rating">
+                            <input type="radio" id="star5" name="rating" value="5">
+                            <label for="star5" class="star" title="Eccezionale">★</label>
+
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4" class="star" title="Molto buono">★</label>
+
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3" class="star" title="Buono">★</label>
+
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2" class="star" title="Accettabile">★</label>
+
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1" class="star" title="Scarso">★</label>
+                        </div>
+                        <p class="rating-message"></p>
+                    </div>
+                    <div class="review-textarea-wrapper">
+                        <textarea class="review-textarea" placeholder="LA TUA RECENSIONE!"></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="page-counter">
+            <p class="counter-label">Visualizzazioni: <span class="counter-number">0</span></p>
+        </div>
+
+        <div class="page-credits">
+            <p>Liceo Statale Duca Degli Abruzzi<br>
+            a.s. 2025-26 • Classe 2AA<br>
+            Liceo Scientifico opzione scienze applicate<br>
+            A cura di Bosco Caterina Furlanetto Nicolò e Vendrame Matteo<br>
+            Referente di progetto Tranchese Cristina</p>
+        </div>
+    </main> 
+
+    <div class="modal-overlay" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <button type="button" class="modal-close" aria-label="Chiudi scheda">×</button>
+            <div class="modal-content">
+                <p class="modal-label">Scheda ornitologica</p>
+                <h3 id="modal-title"></h3>
+                <div class="modal-info">
+                    <p class="modal-description"></p>
+                    <dl>
+                        <dt class="modal-field-1-label">Habitat tipico</dt>
+                        <dd class="modal-field-1"></dd>
+                        <dt class="modal-field-2-label">Comportamento</dt>
+                        <dd class="modal-field-2"></dd>
+                        <dt>Interesse storico</dt>
+                        <dd class="modal-interest"></dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const birdData = {
+            merlo: {
+                title: "Merlo",
+                description: "Il merlo comune è un piccolo passeriforme noto per il piumaggio nero lucido del maschio e il canto melodioso all'alba.",
+                habitat: "Boschi, parchi, giardini e siepi con abbondante sottobosco.",
+                characteristics: "Si nutre di insetti, vermi e frutti; è abile a saltellare sul terreno e a esplorare cespugli.",
+                interest: "Nell'iconografia romana simboleggiava la vita campestre e l'osservazione attenta della natura."
+            },
+            passero: {
+                title: "Passero",
+                description: "Il passero comune è un uccello sociale, molto diffuso nelle aree rurali e urbane, apprezzato per la sua adattabilità.",
+                habitat: "Campagna aperta, villaggi, campi coltivati e spazi con presenza umana.",
+                behavior: "Forma stormi, vive in gruppi e si nutre soprattutto di semi e piccoli insetti.",
+                interest: "La sua frequente presenza negli affreschi ricorda la natura quotidiana apprezzata dai Romani."
+            },
+            tortora: {
+                title: "Tortora",
+                description: "La tortora è un colombaccio elegante, riconoscibile per il suo volo ondulato e il richiamo dolce e ripetuto.",
+                habitat: "Aree alberate, boschi radi, frutteti e giardini ampi.",
+                behavior: "Si alimenta di semi, bacche e germogli; è spesso solitaria o in coppia durante il periodo riproduttivo.",
+                interest: "Era un simbolo di pace e tenerezza, spesso associata ai temi dell'amore e della primavera."
+            },
+            pernice: {
+                title: "Pernice",
+                description: "La pernice è un uccello terricolo, apprezzato per il piumaggio mimetico e la presenza in prati e radure.",
+                habitat: "Praterie, bordi di campi e ambienti aperti con cespugli bassi.",
+                behavior: "Cammina sul terreno in cerca di semi e insetti; vola con brevi spostamenti rapidi.",
+                interest: "Nei contesti antichi era associata alla caccia e alla dieta raffinata dei ricchi."
+            },
+            pavone: {
+                title: "Pavone",
+                description: "Il pavone è noto per la coda maschile spettacolosa e i colori iridescenti, simbolo di bellezza e regalità.",
+                habitat: "Giardini ornamentali, aree aperte e cortili ricchi di vegetazione.",
+                behavior: "Predilige spostarsi a terra camminando; il maschio espande la coda per corteggiare la femmina.",
+                interest: "Nell'antica Roma il pavone era associato al prestigio e alla magnificenza dei banchetti."
+            },
+            ghiandaia: {
+                title: "Ghiandaia",
+                description: "La ghiandaia è un uccello vivace, facilmente riconoscibile per i suoi colori azzurri e il richiamo sonoro.",
+                habitat: "Boschi decidui, parchi e aree con alberi maturi.",
+                behavior: "Si nutre di insetti, noci e semi; memorizza nidiacei e può imitare il canto di altri uccelli.",
+                interest: "Il suo carattere curioso la rendeva un simbolo della vitalità e della varietà faunistica nei giardini dipinti."
+            },
+            ballerina: {
+                title: "Ballerina o piccolo uccello di riva",
+                description: "La ballerina è un minuscolo uccello leggiadro, spesso visto vicino all'acqua e sugli argini.",
+                habitat: "Sponde di fiumi, laghetti, stagni e zone umide con vegetazione bassa.",
+                behavior: "Saltella sul terreno umido e caccia insetti tra le alghe e le pietre.",
+                interest: "La sua presenza nelle scene trasmette l'idea di un giardino vivo e variamente popolato."
+            },
+            "gallinella-purpurea": {
+                title: "Gallinella purpurea",
+                description: "La gallinella purpurea è un uccello acquatico dal piumaggio scuro e le zampe lunghe, comune nei siti palustri.",
+                habitat: "Specchi d'acqua tranquilli, canneti e zone palustri.",
+                behavior: "Si muove silenziosa tra la vegetazione acquatica, nutrendosi di piccoli invertebrati.",
+                interest: "Rappresenta il legame tra arte e ambiente naturale, inclusi gli elementi acquatici dei giardini."
+            },
+            airone: {
+                title: "Airone bianco o garzetta",
+                description: "L'airone bianco è un uccello slanciato e raffinato, noto per le lunghe zampe e il volo elegante.",
+                habitat: "Zone umide, rive di laghi, stagni e paludi.",
+                behavior: "Rimane immobile in attesa di prede; si nutre di pesci, anfibi e piccoli invertebrati.",
+                interest: "Il suo profilo aristocratico accresce il senso di grazia e di natura controllata nell'affresco."
+            },
+            usignolo: {
+                title: "Usignolo",
+                description: "L'usignolo è un piccolo passeriforme celebre per il canto intenso e ricco di variazioni.",
+                habitat: "Boschi fitti, siepi e sottobosco umido.",
+                characteristics: "Canta soprattutto di notte e all'alba; si nutre di insetti e piccoli frutti.",
+                interest: "Nel simbolismo classico era visto come emblema di poesia e comunicazione dell'anima."
+            }
+        };
+
+        const plantData = {
+            alloro: {
+                title: "Alloro",
+                description: "Arbusto sempreverde dal portamento eretto e foglie aromatiche, molto diffuso nel Mediterraneo.",
+                habitat: "Boschi radi, macchie mediterranee e giardini ornamentali.",
+                characteristics: "Foglie lanceolate verdi e frutti a bacche scure che contengono olio essenziale aromatico.",
+                interest: "Nell'antichità era simbolo di vittoria e protezione, utilizzato per corone e incensi."
+            },
+            melograno: {
+                title: "Melograno",
+                description: "Albero da frutto con fiori rossi e frutti dall'interno diviso in numerosi arilli succosi.",
+                habitat: "Orti, giardini e regioni con clima mediterraneo e inverni miti.",
+                characteristics: "Foglie lucide, corteccia liscia e frutti ricchi di antiossidanti.",
+                interest: "Associato alla fertilità e alla prosperità, era apprezzato anche nella cucina romana."
+            },
+            "pino-domestico": {
+                title: "Pino domestico",
+                description: "Albero sempreverde imponente, simbolo del paesaggio mediterraneo e dei giardini romani.",
+                habitat: "Aree collinari, coste sabbiose, parchi e giardini.",
+                characteristics: "Aghi lunghi, pigne grandi e corteccia spessa che protegge dagli incendi.",
+                interest: "Utilizzato per legname e ombra, contribuiva a creare scenari monumentali negli affreschi."
+            },
+            quercia: {
+                title: "Quercia",
+                description: "Grande albero deciduo con foglie lobate e frutti a ghianda, simbolo di forza e durata.",
+                habitat: "Boschi misti, colline e terreni ben drenati.",
+                characteristics: "Legno duro e foglie ampie; produce ghiande utili per la fauna selvatica.",
+                interest: "Considerata sacra in molte culture, anche i Romani associavano la quercia a Giove."
+            },
+            abete: {
+                title: "Abete",
+                description: "Conifera dal profilo piramidale con foglie aghiformi e corteccia scura.",
+                habitat: "Montagne e colline fresche, spesso coltivato in giardini boschivi.",
+                characteristics: "Aghi persistenti, pigne erette e resina aromatica.",
+                interest: "Il suo portamento elevato trasmette solennità agli spazi decorati."
+            },
+            cipresso: {
+                title: "Cipresso",
+                description: "Albero slanciato e sempreverde, caratteristico dei viali e dei luoghi sacri.",
+                habitat: "Terreni asciutti, giardini formali e cimiteri.",
+                characteristics: "Chioma stretta, corteccia fibrosa e foglie squamiformi.",
+                interest: "Simbolo di immortalità e protezione, molto presente nei paesaggi rituali."
+            },
+            oleandro: {
+                title: "Oleandro",
+                description: "Arbusto ornamentale con fiori vistosi e foglie lanceolate, comune nei giardini mediterranei.",
+                habitat: "Terrazze assolate, bordure di giardino e ambienti caldi.",
+                characteristics: "Fiori a grappolo colorati e foglie coriacee resistenti alla siccità.",
+                interest: "Apprezzato per il colore e la forma elegante nei contesti decorativi."
+            },
+            mirto: {
+                title: "Mirto",
+                description: "Arbusto aromatico con foglie lucide e bacche scure, simbolo di amore e pace.",
+                habitat: "Macchia mediterranea e giardini odorosi.",
+                characteristics: "Foglie piccole, fiori bianchi profumati e frutti commestibili.",
+                interest: "Usato nei riti nuziali e nelle corone di festa, aveva significato sacro."
+            },
+            rosmarino: {
+                title: "Rosmarino",
+                description: "Arbusto aromatico con foglie aghiformi e fiori azzurri, molto usato in cucina.",
+                habitat: "Terreni aridi, siepi e giardini aromatici.",
+                characteristics: "Foglie profumate, fiori piccoli e crescita cespugliosa.",
+                interest: "Nella Roma antica era associato a memoria e guarigione."
+            },
+            allium: {
+                title: "Allium o cipolla selvatica",
+                description: "Pianta bulbosa con fiori bianchi o viola e odore caratteristico di aglio.",
+                habitat: "Prati incolti, bordi di strade e zone aperte.",
+                characteristics: "Bulbo sotterraneo, foglie tubolari e fiori a ombrella.",
+                interest: "Utilizzata come alimento e pianta medicinale."
+            },
+            camomilla: {
+                title: "Camomilla",
+                description: "Piccola pianta erbacea dai fiori bianchi e centro giallo, nota per le sue proprietà calmanti.",
+                habitat: "Campi aridi, bordi delle strade e prati aperti.",
+                characteristics: "Fiori simili a margherite e foglie finemente divise.",
+                interest: "Impiegata come rimedio naturale e per infusi rilassanti."
+            },
+            papavero: {
+                title: "Papavero",
+                description: "Erbacea dai fiori grandi e colorati, spesso presente in prati e coltivazioni.",
+                habitat: "Campi coltivati, margini dei campi e praterie aperte.",
+                characteristics: "Petali sottili e sapore leggermente amaro nei semi.",
+                interest: "Segnala la presenza di campagne fiorite e viene spesso associato alla memoria."
+            },
+            iris: {
+                title: "Iris",
+                description: "Pianta erbacea con fiori eleganti e foglie a lama, simbolo di purezza e luce.",
+                habitat: "Prati umidi, bordi di corsi d'acqua e giardini fioriti.",
+                characteristics: "Fiori complessi, spesso su steli alti, con petali segnati da linee.",
+                interest: "Presente nei giardini ornamentali per il suo effetto scenografico."
+            },
+            margherita: {
+                title: "Margherita",
+                description: "Piccola pianta erbacea con fiori bianchi e centro giallo, comune nei primi.",
+                habitat: "Prati, bordi di strada e campi aperti.",
+                characteristics: "Fiori semplici, foglie basali e crescita bassa.",
+                interest: "Immagine di semplicità e naturalezza nei paesaggi fioriti."
+            },
+            viola: {
+                title: "Viola",
+                description: "Piantina a fiori viola o bianchi con foglie arrotondate e crescita rastrera.",
+                habitat: "Zone ombreggiate, aiuole e prati umidi.",
+                characteristics: "Fiori delicati e aroma lieve, spesso usata come pianta ornamentale.",
+                interest: "Collegata alla bellezza discreta e ai giardini segreti."
+            },
+            rosa: {
+                title: "Rosa",
+                description: "Arbusto con fiori profumati e spine, simbolo di amore e bellezza.",
+                habitat: "Aiuole, giardini ornamentali e siepi.",
+                characteristics: "Fiori variopinti, petali profumati e frutti carnosi chiamati cinorrodi.",
+                interest: "Molto apprezzata nella decorazione e nei profumi."
+            },
+            corbezzolo: {
+                title: "Corbezzolo",
+                description: "Arbusto sempreverde mediterraneo con fiori bianchi e frutti rossi commestibili.",
+                habitat: "Macchia mediterranea e boschi aridi.",
+                characteristics: "Foglie lucide, fiori profumati e bacche dolci quando mature.",
+                interest: "Associato a paesaggi costieri e a simboli di fertilità."
+            },
+            mirabolano: {
+                title: "Mirabolano o susino",
+                description: "Albero da frutto con fiori primaverili e frutti giallo-rossastri.",
+                habitat: "Frutteti, giardini e siepi coltivate.",
+                characteristics: "Fiori profumati, foglie ovali e frutti dolci o aspri.",
+                interest: "Coltivato per i suoi frutti e il valore ornamentale."
+            },
+            cotogno: {
+                title: "Cotogno",
+                description: "Arbusto o piccolo albero con fiori bianchi e frutti gialli profumati.",
+                habitat: "Frutteti, giardini e margini dei campi.",
+                characteristics: "Foglie ovali, fiori vistosi e frutti usati per confetture.",
+                interest: "Ricco di significato nelle tradizioni culinarie e medicinali."
+            },
+            pero: {
+                title: "Pero",
+                description: "Albero da frutto con foglie lucide e frutti dolci a forma di pera.",
+                habitat: "Frutteti, giardini e campagne temperate.",
+                characteristics: "Fiori bianchi in primavera e frutti succosi in estate.",
+                interest: "Apprezzato per i frutti e la sua presenza nei giardini antichi."
+            },
+            fico: {
+                title: "Fico",
+                description: "Albero con grandi foglie lobate e frutti carnosi dolci, simbolo della cultura mediterranea.",
+                habitat: "Terreni caldi, campi coltivati e giardini familiari.",
+                characteristics: "Foglie ampie, corteccia liscia e frutti nutrienti.",
+                interest: "Fondamentale nella dieta antica e nell'iconografia del giardino."
+            },
+            "palma-da-dattero": {
+                title: "Palma da dattero",
+                description: "Albero caratteristico con tronco slanciato e chioma di foglie pennate.",
+                habitat: "Oasi, giardini caldi e bordi di corridoi monumentali.",
+                characteristics: "Foglie lunghe, infiorescenze pendenti e frutti dolci a grappolo.",
+                interest: "Ricordava le regioni orientali e il lusso dei giardini esotici."
+            },
+            acanto: {
+                title: "Acanto",
+                description: "Pianta ornamentale con foglie grandi e fiori bianchi o viola raccolti in spiga.",
+                habitat: "Bordi ombrosi, giardini e aree umide.",
+                characteristics: "Foglie decorative e infiorescenze ornate basate su motivi classici.",
+                interest: "Famoso per l'uso nel capitello corinzio e come motivo architettonico."
+            },
+            edera: {
+                title: "Edera",
+                description: "Pianta rampicante sempreverde con foglie lucide, usata per ricoprire muri e pergolati.",
+                habitat: "Muri ombrosi, pergolati e cespugli fitti.",
+                characteristics: "Fusti volubili, foglie cuoriformi e crescita vigorosa.",
+                interest: "Simbolo di fedeltà e protezione, spesso presente nei giardini d'epoca."
+            }
+        };
+
+        const modalOverlay = document.querySelector(".modal-overlay");
+        const modalTitle = document.querySelector("#modal-title");
+        const modalDescription = document.querySelector(".modal-description");
+        const modalField1 = document.querySelector(".modal-field-1");
+        const modalField1Label = document.querySelector(".modal-field-1-label");
+        const modalField2 = document.querySelector(".modal-field-2");
+        const modalField2Label = document.querySelector(".modal-field-2-label");
+        const modalInterest = document.querySelector(".modal-interest");
+        const modalLabel = document.querySelector(".modal-label");
+        const modalClose = document.querySelector(".modal-close");
+
+        const openModal = () => {
+            modalOverlay.classList.add("is-open");
+            modalOverlay.setAttribute("aria-hidden", "false");
+        };
+
+        const closeModal = () => {
+            modalOverlay.classList.remove("is-open");
+            modalOverlay.setAttribute("aria-hidden", "true");
+        };
+
+        const showSpeciesModal = (speciesType, speciesId) => {
+            const source = speciesType === "bird" ? birdData : plantData;
+            const species = source[speciesId];
+            if (!species) return;
+
+            modalLabel.textContent = speciesType === "bird" ? "Scheda ornitologica" : "Scheda botanica";
+            modalTitle.textContent = species.title;
+            modalDescription.textContent = species.description;
+            modalField1Label.textContent = "Habitat tipico";
+            modalField1.textContent = species.habitat;
+            modalField2Label.textContent = speciesType === "bird" ? "Comportamento" : "Caratteristiche";
+            modalField2.textContent = species.characteristics || species.behavior || "Informazioni non disponibili.";
+            modalInterest.textContent = species.interest;
+
+            openModal();
+        };
+
+        const showBirdModal = (birdId) => showSpeciesModal("bird", birdId);
+        const showPlantModal = (plantId) => showSpeciesModal("plant", plantId);
+
+        document.querySelectorAll(".bird-photo img[data-bird-id]").forEach((img) => {
+            img.style.cursor = "pointer";
+            img.addEventListener("click", () => showBirdModal(img.dataset.birdId));
+        });
+
+        document.querySelectorAll(".plant-button").forEach((button) => {
+            button.addEventListener("click", () => showPlantModal(button.dataset.plantId));
+        });
+
+        document.querySelectorAll(".bird-card").forEach((card) => {
+            const img = card.querySelector(".bird-photo img[data-bird-id]");
+            const cardContent = card.querySelector(".bird-card-content");
+            if (!img || !cardContent) return;
+
+            const infoButton = document.createElement("button");
+            infoButton.type = "button";
+            infoButton.className = "info-button";
+            infoButton.dataset.birdId = img.dataset.birdId;
+            infoButton.textContent = "Scheda ornitologica";
+            cardContent.appendChild(infoButton);
+
+            infoButton.addEventListener("click", () => showBirdModal(infoButton.dataset.birdId));
+        });
+
+        modalClose.addEventListener("click", closeModal);
+        modalOverlay.addEventListener("click", (event) => {
+            if (event.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && modalOverlay.classList.contains("is-open")) {
+                closeModal();
+            }
+        });
+
+        const soundButtons = document.querySelectorAll(".sound-button[data-audio]");
+        let currentAudio = null;
+        let currentButton = null;
+
+        const resetButton = (button) => {
+            if (!button) {
+                return;
+            }
+
+            button.textContent = "Ascolta il suono";
+            button.classList.remove("is-playing");
+        };
+
+        soundButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const audioPath = button.dataset.audio;
+
+                if (!audioPath) {
+                    return;
+                }
+
+                if (currentAudio && currentButton === button) {
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0;
+                    resetButton(currentButton);
+                    currentAudio = null;
+                    currentButton = null;
+                    return;
+                }
+
+                if (currentAudio) {
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0;
+                    resetButton(currentButton);
+                }
+
+                const audio = new Audio(audioPath);
+                currentAudio = audio;
+                currentButton = button;
+
+                button.textContent = "Ferma il suono";
+                button.classList.add("is-playing");
+
+                audio.addEventListener("ended", () => {
+                    resetButton(button);
+                    if (currentButton === button) {
+                        currentAudio = null;
+                        currentButton = null;
+                    }
+                });
+
+                audio.addEventListener("error", () => {
+                    resetButton(button);
+                    if (currentButton === button) {
+                        currentAudio = null;
+                        currentButton = null;
+                    }
+                });
+
+                audio.play().catch(() => {
+                    resetButton(button);
+                    if (currentButton === button) {
+                        currentAudio = null;
+                        currentButton = null;
+                    }
+                });
+            });
+        });
+
+                // Review Rating System
+        const ratingInputs = document.querySelectorAll(".star-rating input[type='radio']");
+        const ratingMessage = document.querySelector(".rating-message");
+        const ratingMessages = {
+            5: "Fantastico! Grazie per il feedback positivo! 🌟",
+            4: "Ottimo! Siamo felici che ti sia piaciuto!",
+            3: "Bene! Apprezziamo il tuo feedback.",
+            2: "Grazie per il feedback. Possiamo migliorare!",
+            1: "Ci dispiace, come potremmo migliorarlo?"
+        };
+
+        ratingInputs.forEach((input) => {
+            input.addEventListener("change", () => {
+                const rating = input.value;
+                ratingMessage.textContent = ratingMessages[rating];
+                ratingMessage.classList.add("show");
+            });
+        });
+
+        // Page View Counter
+        const counterNumber = document.querySelector(".counter-number");
+        const counterViewsKey = "siteViews";
+
+        let views = localStorage.getItem(counterViewsKey);
+        if (views === null) {
+            views = 1;
+        } else {
+            views = parseInt(views) + 1;
+        }
+        localStorage.setItem(counterViewsKey, views);
+        counterNumber.textContent = views;
+    </script>
+
+</body>
+</html>

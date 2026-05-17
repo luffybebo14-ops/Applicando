@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="photos/icon.png">
+<title>Oculo del Pantheon - Video Section</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Georgia', serif;
+    background:#000;
+    color:#f0f0f0;
+    overflow-x:hidden;
+}
+
+.section{
+    position:relative;
+    height:200vh;
+}
+
+.video-bg{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    z-index:-2;
+}
+
+.video-bg iframe{
+    width:100vw;
+    height:100vh;
+    border:0;
+}
+
+.overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.85);
+    z-index:-1;
+    transition:opacity 0.15s linear;
+}
+
+.main-title{
+    position:relative;
+    margin-top:20vh;
+    text-align:center;
+    font-size:3em;
+    color:#f4e4c1;
+    text-shadow:3px 3px 6px rgba(0,0,0,0.8);
+}
+
+.content-box {
+    position: relative;
+    margin: 80px auto;
+    width: 70%;
+    max-width: 900px;
+    height: 420px;
+    background: rgba(0,0,0,0.8);
+    border: 1px solid rgba(212,175,55,0.3);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.7);
+    display: flex;
+    flex-direction: column;
+}
+
+.text {
+    flex: 1; 
+    overflow-y: auto;
+    text-align: justify;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.audio-btn{
+    position:fixed;
+    bottom:30px;
+    right:30px;
+    background:rgba(0,0,0,0.8);
+    border:1px solid #d4af37;
+    color:#d4af37;
+    padding:12px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    display:none;
+}
+
+.video-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 140px;
+    background: rgba(0,0,0,0.8);
+    border: 1px solid #d4af37;
+    color: #d4af37;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: none;
+}
+
+.back_btn {
+    padding: 12px 24px;
+    background-color: #d4af37;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="section">
+
+    <div class="video-bg">
+        <iframe id="ytVideo" src="https://www.youtube.com/embed/Yn2XdZfx93w?enablejsapi=1&autoplay=1&mute=1&controls=0&loop=1&playlist=Yn2XdZfx93w&modestbranding=1&playsinline=1" allow="autoplay; fullscreen"></iframe>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <h1 class="main-title">OCULO DEL PANTHEON</h1>
+
+    <div class="content-box">
+        <div class="text">
+            L'oculo del Pantheon rappresenta una delle soluzioni architettoniche più straordinarie e affascinanti dell'intera antichità romana, un elemento che ancora oggi stupisce per la sua semplicità apparente e la sua incredibile complessità tecnica e simbolica.
+
+            Situato esattamente al centro della maestosa cupola emisferica, l'oculo è una grande apertura circolare del diametro di circa 9 metri. Questa apertura non è soltanto un dettaglio estetico, ma costituisce il cuore stesso del Pantheon, sia dal punto di vista strutturale che concettuale. La sua presenza alleggerisce enormemente il peso della cupola, permettendo una distribuzione più efficiente delle forze e contribuendo alla straordinaria stabilità dell’edificio, che è rimasto intatto per quasi duemila anni.
+
+            Dal punto di vista visivo ed emozionale, l’oculo è l’unica fonte di luce naturale all’interno del Pantheon. La luce solare penetra dall’alto come un fascio luminoso puro e definito, creando un effetto scenografico unico. Questo fascio si muove lentamente nel corso della giornata, trasformando l’interno del tempio in una sorta di gigantesca meridiana. Le pareti, i cassettoni della cupola e il pavimento vengono illuminati in momenti diversi, dando vita a un continuo mutamento dello spazio percepito.
+
+            Durante particolari periodi dell’anno, come gli equinozi o il 21 aprile (data tradizionale della fondazione di Roma), la luce assume significati ancora più simbolici, illuminando punti specifici dell’edificio e rafforzando l’idea che il Pantheon fosse progettato anche come strumento astronomico oltre che architettonico.
+
+            Un aspetto sorprendente dell’oculo è il suo rapporto con gli elementi naturali. Non essendo coperto da alcun vetro o protezione, lascia entrare liberamente pioggia, vento e occasionalmente anche neve. Tuttavia, gli ingegneri romani avevano previsto tutto: il pavimento leggermente convesso e i piccoli fori di drenaggio permettono all’acqua di defluire senza creare problemi, dimostrando ancora una volta l’incredibile avanzamento tecnico raggiunto da questa civiltà.
+
+            Dal punto di vista simbolico, l’oculo è spesso interpretato come un collegamento diretto tra il mondo terreno e quello celeste. È come un “occhio” aperto verso il cielo, attraverso il quale gli dei potevano osservare gli uomini e viceversa. Questa apertura rappresentava anche una via di comunicazione spirituale: il fumo degli incensi e delle offerte rituali saliva verso l’alto, dissolvendosi nell’aria e raggiungendo simbolicamente il divino.
+
+            Inoltre, la forma perfettamente circolare dell’oculo richiama l’idea di perfezione e armonia, concetti fondamentali nell’architettura romana e nella filosofia classica. Il cerchio, infatti, era considerato una figura perfetta, senza inizio né fine, simbolo dell’eternità e dell’ordine cosmico.
+
+            Ancora oggi, entrando nel Pantheon e alzando lo sguardo verso l’oculo, si prova una sensazione di meraviglia e di connessione con qualcosa di più grande. La luce, il vuoto e lo spazio si combinano in un’esperienza quasi mistica, rendendo questo elemento architettonico non solo una soluzione tecnica geniale, ma anche una delle espressioni più alte del rapporto tra uomo, natura e divinità.</div>
+        <a href="oculo.html">
+            <button class="back_btn">Back</button>
+        </a>
+    </div>
+        
+
+    <button class="audio-btn" id="audioBtn">🔊 Audio</button>
+    <button class="video-btn" id="videoBtn">⏸ Pausa</button>
+
+</div>
+
+<script>
+const overlay = document.getElementById('overlay');
+const audioBtn = document.getElementById('audioBtn');
+const videoBtn = document.getElementById('videoBtn');
+let player;
+let isMuted = true;
+let isPlaying = true;
+
+function onYouTubeIframeAPIReady(){
+    player = new YT.Player('ytVideo', {
+        events: {
+            onReady: (e) => {
+                e.target.playVideo();
+                e.target.mute();
+            }
+        }
+    });
+}
+
+let tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+document.body.appendChild(tag);
+
+window.addEventListener('scroll', ()=>{
+    let scrollY = window.scrollY;
+    let max = window.innerHeight;
+    let progress = Math.min(scrollY / max, 1);
+    overlay.style.opacity = 1 - progress;
+
+    if(progress >= 1){
+        audioBtn.style.display = 'block';
+        videoBtn.style.display = 'block';
+    } else {
+        audioBtn.style.display = 'none';
+        videoBtn.style.display = 'none';
+    }
+});
+
+audioBtn.addEventListener('click', ()=>{
+    if(!player) return;
+    if(isMuted){
+        player.unMute();
+        audioBtn.innerText = '🔊 Audio';
+    } else {
+        player.mute();
+        audioBtn.innerText = '🔇 Muto' ;
+    }
+    isMuted = !isMuted;
+});
+
+videoBtn.addEventListener('click', () => {
+    if(!player) return;
+    if(isPlaying){
+        player.pauseVideo();
+        videoBtn.innerText = '▶ Play';
+    } else {
+        player.playVideo();
+        videoBtn.innerText = '⏸ Pausa';
+    }
+    isPlaying = !isPlaying;
+});
+</script>
+
+</body>
+</html>

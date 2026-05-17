@@ -1,0 +1,455 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="photos/icon.png">
+    <title>Il Pantheon e l'Oculo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family:
+                'Georgia',
+                'Segoe UI Emoji',
+                'Apple Color Emoji',
+                'Noto Color Emoji',
+                serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #f0f0f0;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23c9a961" width="1200" height="400"/></svg>');
+            padding: 120px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.5) 100%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+            position: relative;
+            z-index: 1;
+            color: #f4e4c1;
+        }
+
+        .subtitle {
+            font-size: 1.4em;
+            color: #d4af37;
+            position: relative;
+            z-index: 1;
+            font-style: italic;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin: 24px 20px 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 50px 0 24px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: #f4e4c1;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        .oculus-demo {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 40px auto;
+            background: radial-gradient(circle, #4a4a4a 0%, #2a2a2a 40%, #1a1a1a 100%);
+            border-radius: 50%;
+            box-shadow: inset 0 0 60px rgba(0,0,0,0.8), 0 0 80px rgba(212, 175, 55, 0.4);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .oculus-demo::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(circle, #87ceeb 0%, #4a90e2 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 40px rgba(135, 206, 235, 0.6), inset 0 0 30px rgba(255,255,255,0.4);
+            animation: light-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes light-pulse {
+            0%, 100% {
+                box-shadow: 0 0 40px rgba(135, 206, 235, 0.6), inset 0 0 30px rgba(255,255,255,0.4);
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                box-shadow: 0 0 60px rgba(135, 206, 235, 0.9), inset 0 0 40px rgba(255,255,255,0.6);
+                transform: translate(-50%, -50%) scale(1.05);
+            }
+        }
+
+        .oculus-demo::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 2px dashed rgba(212, 175, 55, 0.3);
+            border-radius: 50%;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(201, 169, 97, 0.05) 100%);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .info-card h3 {
+            color: #d4af37;
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon {
+            font-size: 1.8em;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            font-family:
+                "Apple Color Emoji",
+                "Segoe UI Emoji",
+                "Noto Color Emoji",
+                sans-serif;
+        }
+
+        .info-card p {
+            line-height: 1.8;
+            color: #e0e0e0;
+        }
+
+        .dimensions {
+            text-align: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 15px;
+        }
+
+        .dimensions h3 {
+            color: #d4af37;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .dim-value {
+            font-size: 3em;
+            color: #f4e4c1;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .april-section {
+            margin: 20px 0 10px;
+            padding: 38px 32px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.14) 0%, rgba(255, 255, 255, 0.05) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.28);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+        }
+
+        .april-section h3 {
+            margin-bottom: 18px;
+            color: #d4af37;
+            font-size: 2em;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .april-section p {
+            color: #ece7dc;
+            line-height: 1.95;
+            text-align: justify;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 2px solid rgba(212, 175, 55, 0.3);
+            color: #d4af37;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2em;
+            }
+
+            .subtitle {
+                font-size: 1.1em;
+            }
+
+            .hero-section {
+                padding: 40px 20px;
+            }
+
+            .oculus-demo {
+                width: 200px;
+                height: 200px;
+            }
+
+            .oculus-demo::before {
+                width: 90px;
+                height: 90px;
+            }
+
+        }
+
+        .back_btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #d4af37;
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>IL PANTHEON</h1>
+    <p class="subtitle">L'Occhio di Roma sul Cielo</p>
+</header>
+
+<div class="container">
+    <section class="gallery">
+        <div class="gallery-item">
+            <img src="http://bellomogiuseppe.altervista.org/pantheon_sito/img/oculo_del_pantheon.jpeg" alt="Oculo del Pantheon">
+            <div class="gallery-caption">
+                <strong>L'Oculo dall'Interno</strong><br>
+                Vista della cupola a cassettoni con l'oculo al centro
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="http://bellomogiuseppe.altervista.org/pantheon_sito/img/facciata_classica_pantheon.jpeg" alt="Facciata del Pantheon">
+            <div class="gallery-caption">
+                <strong>La Facciata Classica</strong><br>
+                Colonne corinzie e il pronao del Pantheon
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="http://bellomogiuseppe.altervista.org/pantheon_sito/img/vista_dal_basso_pantheon.jpeg" alt="Cupola dal basso">
+            <div class="gallery-caption">
+                <strong>La Cupola Vista dal Basso</strong><br>
+                I cassettoni e l'oculo che irradia luce naturale
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="http://bellomogiuseppe.altervista.org/pantheon_sito/img/piazza_della_rotonda.jpeg" alt="Pantheon al tramonto">
+            <div class="gallery-caption">
+                <strong>Piazza della Rotonda</strong><br>
+                Il Pantheon illuminato al tramonto
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="http://bellomogiuseppe.altervista.org/pantheon_sito/img/piazza_turisti.jpeg" alt="Vista turisti piazza Pantheon">
+            <div class="gallery-caption">
+                <strong>Vista Panoramica</strong><br>
+                La piazza con turisti e la maestosa facciata
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="http://bellomogiuseppe.altervista.org/pantheon_sito/img/vista_aerea.jpeg" alt="Vista aerea Pantheon">
+            <div class="gallery-caption">
+                <strong>Vista Aerea</strong><br>
+                La cupola e il timpano visti dall'alto al tramonto
+            </div>
+        </div>
+    </section>
+
+    <a href="video_oculo.html" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
+        <section class="hero-section" style="cursor: pointer;">
+            <h2 style="color: #d4af37; font-size: 2.2em; text-align: center; margin-bottom: 30px;">L'Oculo: Il Cuore del Pantheon</h2>
+            <div class="oculus-demo"></div>
+            <p style="text-align: center; font-size: 1.2em; line-height: 1.8; margin-top: 30px;">
+                L'oculo e l'unica fonte di luce naturale del Pantheon, un'apertura circolare di 9 metri di diametro
+                che collega il mondo terreno con quello celeste. Attraverso questo "occhio" penetra la luce del sole,
+                creando un fascio luminoso che si muove lentamente all'interno del tempio, segnando il passare delle ore
+                come un immenso orologio solare.
+            </p>
+        </section>
+    </a>
+
+    <div class="dimensions">
+        <h3>Dimensioni dell'Oculo</h3>
+        <p><span class="dim-value">9 m</span></p>
+        <p style="margin-top: 10px; color: #e0e0e0;">di diametro - 43,3 metri da terra</p>
+    </div>
+
+    <div class="info-grid">
+        <div class="info-card">
+            <h3><span class="icon">&#x2600;&#xFE0F;</span> Illuminazione</h3>
+            <p>L'oculo permette alla luce solare di entrare direttamente nel Pantheon, creando effetti luminosi spettacolari.</p>
+        </div>
+
+        <div class="info-card">
+            <h3><span class="icon">&#x1F327;&#xFE0F;</span> La Pioggia</h3>
+            <p>Quando piove, l'acqua entra e viene drenata da 22 fori romani ancora funzionanti.</p>
+        </div>
+
+        <div class="info-card">
+            <h3><span class="icon">&#x2699;&#xFE0F;</span> Ingegneria</h3>
+            <p>Riduce il peso della cupola e distribuisce le forze strutturali in modo uniforme.</p>
+        </div>
+
+        <div class="info-card">
+            <h3><span class="icon">&#x2696;&#xFE0F;</span> Proporzioni Perfette</h3>
+            <p>Diametro e altezza sono identici: 43,3 metri. L'oculo e 1/5 della cupola.</p>
+        </div>
+
+        <div class="info-card">
+            <h3><span class="icon">&#x2728;</span> Simbolismo</h3>
+            <p>Era l'occhio degli dei: il fumo degli incensi usciva verso il cielo.</p>
+        </div>
+
+        <div class="info-card">
+            <h3><span class="icon">&#x1F32C;&#xFE0F;</span> Regolazione Termica</h3>
+            <p>Funziona come ventilazione naturale: l'aria calda esce, la fresca entra.</p>
+        </div>
+    </div>
+
+    <section class="april-section">
+        <h3>21 aprile</h3>
+        <p>
+            Il 21 aprile, giorno tradizionalmente associato al “Natale di Roma”, nel Pantheon avviene un fenomeno astronomico e simbolico molto particolare.
+            A mezzogiorno circa, un raggio di sole entra dall’oculo della grande cupola e illumina perfettamente il portale d’ingresso del tempio.
+            Questo effetto non è casuale: il Pantheon fu progettato dai Romani con straordinaria precisione, in modo che la luce del Sole segnasse momenti importanti dell’anno.
+            Il 21 aprile, data che la tradizione indica come fondazione di Roma nel 753 a.C., il fascio luminoso colpisce l’entrata come un simbolico “invito” della luce divina.
+            Secondo molti studiosi, l’imperatore che entrava nel tempio in quel momento veniva associato al potere degli dèi e alla grandezza di Roma.
+            Ancora oggi questo evento richiama visitatori e studiosi, perché mostra come architettura, astronomia e religione fossero strettamente unite nella civiltà romana.
+        </p>
+
+        <br>
+        <a href="second_year_2.html">
+            <button class="back_btn">Back</button>
+        </a>
+
+    </section>
+</div>
+
+<footer>
+    <p style="font-size: 1.1em;">Il Pantheon - Piazza della Rotonda, Roma</p>
+    <p style="margin-top: 10px; font-size: 0.9em; color: #c9a961;">
+        Bellomo Giuseppe, Marotto Davide, Semenzato Sofia
+    </p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-book Pantheon</title>
+    <link rel="icon" type="image/x-icon" href="photos\icon.png">
+    <style>
+        #background {
+          position: fixed;  
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: white;
+          background-size: cover;
+          z-index: -1;         
+        }
+
+        .foreground {
+          background-color: #f9f9fc;
+          border-top-left-radius: 30px; 
+          border-top-right-radius: 30px;
+          border-radius: 30px;
+          padding: 40px 20px;
+          max-width: 900px;
+          height: auto;
+          margin: 0 auto;
+          box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+        }
+        .ebook-container {
+            width: 100%;
+            max-width: 850px;
+            height: 480px;
+            margin: 0 auto;
+            box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .ebook-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, Arial, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            color: #1a1a3d;
+        }    
+        h3 {
+          text-align: center;
+          margin-top: 0;
+          margin-bottom: 40px;
+          font-weight: 700;
+          font-size: 20px;
+          color: #000000;
+        }
+        pre {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, Arial, sans-serif;
+            max-width: 100%; 
+            white-space: pre-wrap; 
+            word-wrap: break-word;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 850px;
+            margin: 20px auto 0 auto; 
+        }
+
+        .back_btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #1a1a3d;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+        }
+        #toggleBtn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: white;
+            color: black;
+            border: 1px solid #ccc;
+            text-decoration: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="background"></div>
+
+    <div class="foreground">
+        <br>
+        <h3>MODELLINO ACQUEDOTTO ROMANO</h3>
+        <br>
+
+        <div class="ebook-container">
+            <video id="canvaVideo" autoplay muted loop playsinline style="width:100%; height:auto;">
+                <source src="photos/Acquedotto_video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        
+        <div class="button-container">
+            <a href="second_year.html">
+                <button class="back_btn">Back</button>
+            </a>
+
+            <button id="toggleBtn">Pause</button>
+        </div>
+
+    </div>
+
+    <script>
+        const video = document.getElementById('canvaVideo');
+        const button = document.getElementById('toggleBtn');
+
+        button.addEventListener('click', () => {
+            if (video.paused) {
+            video.play();
+            button.textContent = 'Pause';
+            } else {
+            video.pause();
+            button.textContent = 'Play';
+            }
+        });
+    </script>
+
+</body>
+</html>
