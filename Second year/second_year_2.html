@@ -6,28 +6,29 @@
   <link rel="icon" type="image/x-icon" href="photos/icon.png">
   <title>Second year</title>
   <style>
-
     #background {
-      position: fixed;      
+      position: fixed;       
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: white;
+      background-color: rgb(219, 219, 219);
       background-size: cover;
       z-index: -1;           
     }
 
     .foreground {
-      background-color: #f9f9fc;
-      border-top-left-radius: 30px; 
+      background-color: #f9f9f9c8;
+      border-top-left-radius: 30px;  
       border-top-right-radius: 30px;
       border-radius: 30px;
       padding: 40px 20px;
       max-width: 900px;
-      height: auto;
+      height: 782px;
       margin: 0 auto;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
     }
 
     body {
@@ -48,21 +49,14 @@
     .main-container {
       max-width: 800px;
       width: 100%;
-      justify-self: center;
+      align-self: center;
     }
 
     .top-row,
     .bottom-row {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 60px;
-      width: 100%;
-    }
-
-    .about-row {
-      text-align: center;
-      margin-top: 0;
-      margin-bottom: 0;
+      margin-bottom: 20px;
       width: 100%;
     }
 
@@ -104,26 +98,32 @@
       color: #1a1a3d;
     }
 
-    .about-row a p {
-      font-weight: 700;
-      font-size: 18px;
-      margin: 0 auto;
-      display: inline-block;
-      text-align: center;
-      max-width: 100%;
-    }
-
-    .about-row a {
-      max-width: 100%;
-    }
-
     .img {
       width: 100%;
       height: auto;
       margin-bottom: 12px;
     }
 
-    .back_btn {
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-top: auto;
+      padding-top: 30px;
+    }
+
+    .bottom-nav .about-link {
+      font-weight: 700;
+      font-size: 18px;
+      max-width: 100%;
+    }
+
+    .bottom-nav .about-link:hover {
+      color: rgb(231, 11, 48);
+    }
+
+    .back_btn, .next_btn {
         display: inline-block;
         padding: 12px 24px;
         background-color: #1a1a3d;
@@ -132,24 +132,6 @@
         border-radius: 8px;
         border: none;
         cursor: pointer;
-    }
-
-    .next_btn {
-    display: inline-block;
-    padding: 12px 24px;
-    background-color: #1a1a3d;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    }
-
-    .nav-buttons {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      margin-top: 30px;
     }
 
     .modal-overlay {
@@ -161,9 +143,7 @@
         padding: 24px;
         z-index: 1000;
     }
-    .modal-overlay.is-open {
-        display: grid;
-    }
+    .modal-overlay.is-open { display: grid; }
     .modal {
         width: min(680px, 100%);
         max-height: min(90vh, 720px);
@@ -188,10 +168,7 @@
         border-radius: 50%;
         cursor: pointer;
     }
-    .modal-content {
-        display: grid;
-        gap: 18px;
-    }
+    .modal-content { display: grid; gap: 18px; }
     .modal-label {
         margin: 0;
         text-transform: uppercase;
@@ -205,21 +182,14 @@
         color: #5f2d21;
         text-align: left;
     }
-    .modal-info {
-        display: grid;
-        gap: 14px;
-    }
+    .modal-info { display: grid; gap: 14px; }
     .modal-info p {
         margin: 0;
         line-height: 1.7;
         font-weight: normal;
         text-align: left;
     }
-    .modal-credits {
-        font-style: italic;
-        color: #666;
-        margin-top: 10px;
-    }
+    .modal-credits { font-style: italic; color: #666; margin-top: 10px; }
 
     @media (max-width: 768px) {
         .foreground {
@@ -227,21 +197,23 @@
             width: 90%;
             padding: 30px 20px;
             box-sizing: border-box;
+            height: auto;
         }
         .top-row, .bottom-row {
             flex-direction: column;
             align-items: center;
             gap: 40px;
         }
-        .main-container {
-            margin-top: 10%;
+        .main-container { 
+          margin-top: 10%; 
         }
-        a {
-            max-width: 100%;
-            width: 100%;
+        a { 
+          max-width: 100%; 
+          width: 100%; 
         }
-        .nav-buttons {
-            gap: 15px;
+        .bottom-nav { 
+          flex-direction: row; 
+          gap: 80px; 
         }
     }
   </style>
@@ -278,23 +250,12 @@
           <span class="lorem modal-trigger" data-id="oculo">More...</span>
         </a>
       </div>
-
-      <div class="about-row">
-        <a href="about-us_2.html">
-          <p>About us</p>
-        </a>
-      </div>
     </div>
     
-    <br>
-    <div class="nav-buttons">
-      <a href="second_year.html" style="max-width: fit-content; width: auto;">
-        <button class="back_btn">Back</button>
-      </a>
-      
-      <a href="second_year_3.html" style="max-width: fit-content; width: auto;">
-        <button class="next_btn">Next</button>
-      </a>
+    <div class="bottom-nav">
+      <a href="second_year.html" style="width: auto;"><button class="back_btn">Back</button></a>
+      <a href="about-us_2.html" class="about-link">About us</a>
+      <a href="second_year_3.html" style="width: auto;"><button class="next_btn">Next</button></a>
     </div>
   </div>
 

@@ -7,67 +7,65 @@
     <link rel="icon" type="image/x-icon" href="photos\icon.png">
     <style>
         #background {
-          position: fixed;  
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: white;
-          background-size: cover;
-          z-index: -1;         
-        }
-
-        body {
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, Arial, sans-serif;
-            margin: 0;
-            height: 100vh; /* Locks body to exactly the height of the screen */
-            overflow: hidden; /* Prevents any scrolling */
-            color: #1a1a3d;
-            display: flex;
-            align-items: center; /* Centers the foreground vertically */
-            justify-content: center; /* Centers the foreground horizontally */
+            position: fixed;     
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(219, 219, 219);
+            background-size: cover;
+            z-index: -1;         
         }
 
         .foreground {
-          background-color: #f9f9fc;
-          border-radius: 30px;
-          padding: 30px 20px;
-          width: 90%; /* Adapts width on mobile */
-          max-width: 900px;
-          height: 95vh; /* Takes up 95% of the screen height */
-          box-sizing: border-box; /* Ensures padding is calculated inside the height */
-          display: flex;
-          flex-direction: column; /* Stacks title, video, and buttons vertically */
-          box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+            background-color: #f9f9f9c8;
+            border-top-left-radius: 30px;   
+            border-top-right-radius: 30px;
+            border-radius: 30px;
+            padding: 40px 20px;
+            max-width: 900px;
+            height: 782px;
+            margin: 0 auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
-
-        h3 {
-          text-align: center;
-          margin-top: 0;
-          margin-bottom: 20px;
-          font-weight: 700;
-          font-size: 20px;
-          color: #000000;
-          flex-shrink: 0; /* Prevents the title from being squished */
-        }
-
         .ebook-container {
             width: 100%;
-            flex-grow: 1; /* Tells the container to take up ALL available remaining space */
+            justify-self: center;
+            max-width: 850px;
+            height: 480px;
+            margin-top: 15%;
             box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16);
             border-radius: 8px;
             overflow: hidden;
-            background-color: #000; /* Adds black letterboxing around the video if needed */
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
         #canvaVideo {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Ensures the video scales perfectly without stretching or cropping */
+            object-fit: contain; 
         }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden; 
+            color: #1a1a3d;
+            display: flex;
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        h3 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-size: 20px;
+            color: #000000;
+            flex-shrink: 0; 
+        }
+
         
         .button-container {
             display: flex;
@@ -75,16 +73,17 @@
             align-items: center;
             width: 100%;
             margin-top: 20px;
-            flex-shrink: 0; /* Prevents the buttons from being squished */
+            flex-shrink: 0; 
         }
 
         .back_btn, #toggleBtn {
+            display: inline-block;
             padding: 12px 24px;
+            background-color: #1a1a3d;
+            color: white;
+            text-decoration: none;
             border-radius: 8px;
             cursor: pointer;
-            text-decoration: none;
-            font-size: 16px;
-            display: inline-block;
         }
 
         .back_btn {
@@ -96,7 +95,32 @@
         #toggleBtn {
             background-color: white;
             color: black;
-            border: 1px solid #ccc;
+            border: 1px solid #000000;
+        }
+        @media (max-width: 768px) {
+            .foreground {
+                margin: 20px auto;
+                width: 90%;
+                padding: 30px 20px;
+                box-sizing: border-box;
+                height: auto;
+            }
+            .top-row, .bottom-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 40px;
+            }
+            .main-container { 
+            margin-top: 10%; 
+            }
+            a { 
+            max-width: 100%; 
+            width: 100%; 
+            }
+            .bottom-nav { 
+            flex-direction: row; 
+            gap: 80px; 
+            }
         }
     </style>
 </head>

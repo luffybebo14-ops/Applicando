@@ -7,115 +7,116 @@
 <title>Oculo del Pantheon - Video Section</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+    }
 
-body{
-    font-family:'Georgia', serif;
-    background:#000;
-    color:#f0f0f0;
-    overflow-x:hidden;
-}
+    body{
+        font-family:'Georgia', serif;
+        background:#000;
+        color:#f0f0f0;
+        overflow-x:hidden;
+    }
 
-.section{
-    position:relative;
-    height:200vh;
-}
+    .section{
+        position:relative;
+        height:200vh;
+    }
 
-.video-bg{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100vh;
-    z-index:-2;
-}
+    .video-bg{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100vh;
+        z-index:-2;
+    }
 
-.video-bg iframe{
-    width:100vw;
-    height:100vh;
-    border:0;
-}
+    .video-bg iframe{
+        width:100vw;
+        height:100vh;
+        border:0;
+    }
 
-.overlay{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.85);
-    z-index:-1;
-    transition:opacity 0.15s linear;
-}
+    .overlay{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background:rgba(0,0,0,0.85);
+        z-index:-1;
+        transition:opacity 0.15s linear;
+    }
 
-.main-title{
-    position:relative;
-    margin-top:20vh;
-    text-align:center;
-    font-size:3em;
-    color:#f4e4c1;
-    text-shadow:3px 3px 6px rgba(0,0,0,0.8);
-}
+    .main-title{
+        position:relative;
+        margin-top:20vh;
+        text-align:center;
+        font-size:3em;
+        color:#f4e4c1;
+        text-shadow:3px 3px 6px rgba(0,0,0,0.8);
+    }
 
-.content-box {
-    position: relative;
-    margin: 80px auto;
-    width: 70%;
-    max-width: 900px;
-    height: 420px;
-    background: rgba(0,0,0,0.8);
-    border: 1px solid rgba(212,175,55,0.3);
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.7);
-    display: flex;
-    flex-direction: column;
-}
+    .content-box {
+        position: relative;
+        margin: 80px auto;
+        width: 70%;
+        max-width: 900px;
+        height: 420px;
+        background: rgba(0,0,0,0.8);
+        border: 1px solid rgba(212,175,55,0.3);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.7);
+        display: flex;
+        flex-direction: column;
+    }
 
-.text {
-    flex: 1; 
-    overflow-y: auto;
-    text-align: justify;
-    line-height: 1.7;
-    margin-bottom: 20px;
-}
+    .text {
+        flex: 1; 
+        overflow-y: auto;
+        text-align: justify;
+        line-height: 1.7;
+        margin-bottom: 20px;
+    }
 
-.audio-btn{
-    position:fixed;
-    bottom:30px;
-    right:30px;
-    background:rgba(0,0,0,0.8);
-    border:1px solid #d4af37;
-    color:#d4af37;
-    padding:12px 18px;
-    border-radius:10px;
-    cursor:pointer;
-    display:none;
-}
+    .audio-btn{
+        position:fixed;
+        bottom:30px;
+        right:30px;
+        background:rgba(0,0,0,0.8);
+        border:1px solid #d4af37;
+        color:#d4af37;
+        padding:12px 18px;
+        border-radius:10px;
+        cursor:pointer;
+        display:none;
+    }
 
-.video-btn {
-    position: fixed;
-    bottom: 30px;
-    right: 140px;
-    background: rgba(0,0,0,0.8);
-    border: 1px solid #d4af37;
-    color: #d4af37;
-    padding: 12px 18px;
-    border-radius: 10px;
-    cursor: pointer;
-    display: none;
-}
+    .video-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 140px;
+        background: rgba(0,0,0,0.8);
+        border: 1px solid #d4af37;
+        color: #d4af37;
+        padding: 12px 18px;
+        border-radius: 10px;
+        cursor: pointer;
+        display: none;
+    }
 
-.back_btn {
-    padding: 12px 24px;
-    background-color: #d4af37;
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-    border-radius: 8px;
-}
+    .back_btn {
+        padding: 12px 24px;
+        background-color: #d4af37;
+        color: rgb(0, 0, 0);
+        text-decoration: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
 
 </style>
 </head>

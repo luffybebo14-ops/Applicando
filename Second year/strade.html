@@ -7,14 +7,42 @@
     <link rel="icon" type="image/x-icon" href="photos\icon.png">
     <style>
         #background {
-          position: fixed;  
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: white;
-          background-size: cover;
-          z-index: -1;         
+            position: fixed;     
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(219, 219, 219);
+            background-size: cover;
+            z-index: -1;         
+        }
+
+        .foreground {
+            background-color: #f9f9f9c8;
+            border-top-left-radius: 30px;   
+            border-top-right-radius: 30px;
+            border-radius: 30px;
+            padding: 40px 20px;
+            max-width: 900px;
+            height: 782px;
+            margin: 0 auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .ebook-container {
+            width: 100%;
+            justify-self: center;
+            max-width: 850px;
+            height: 480px;
+            margin-top: 15%;
+            box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        #canvaVideo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
         }
 
         body {
@@ -27,47 +55,17 @@
             align-items: center; 
             justify-content: center; 
         }
-
-        .foreground {
-          background-color: #f9f9fc;
-          border-radius: 30px;
-          padding: 30px 20px;
-          width: 90%; 
-          max-width: 900px;
-          height: 95vh; 
-          box-sizing: border-box; 
-          display: flex;
-          flex-direction: column; 
-          box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-        }
-
+        
         h3 {
-          text-align: center;
-          margin-top: 0;
-          margin-bottom: 20px;
-          font-weight: 700;
-          font-size: 20px;
-          color: #000000;
-          flex-shrink: 0; 
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-size: 20px;
+            color: #000000;
+            flex-shrink: 0; 
         }
 
-        .ebook-container {
-            width: 100%;
-            flex-grow: 1; 
-            box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16);
-            border-radius: 8px;
-            overflow: hidden;
-            background-color: #000; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #canvaVideo {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; 
-        }
         
         .button-container {
             display: flex;
@@ -79,12 +77,13 @@
         }
 
         .back_btn, #toggleBtn {
+            display: inline-block;
             padding: 12px 24px;
+            background-color: #1a1a3d;
+            color: white;
+            text-decoration: none;
             border-radius: 8px;
             cursor: pointer;
-            text-decoration: none;
-            font-size: 16px;
-            display: inline-block;
         }
 
         .back_btn {
@@ -96,7 +95,32 @@
         #toggleBtn {
             background-color: white;
             color: black;
-            border: 1px solid #ccc;
+            border: 1px solid #000000;
+        }
+        @media (max-width: 768px) {
+            .foreground {
+                margin: 20px auto;
+                width: 90%;
+                padding: 30px 20px;
+                box-sizing: border-box;
+                height: auto;
+            }
+            .top-row, .bottom-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 40px;
+            }
+            .main-container { 
+            margin-top: 10%; 
+            }
+            a { 
+            max-width: 100%; 
+            width: 100%; 
+            }
+            .bottom-nav { 
+            flex-direction: row; 
+            gap: 80px; 
+            }
         }
     </style>
 </head>
