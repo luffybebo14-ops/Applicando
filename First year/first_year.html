@@ -236,13 +236,13 @@
         <a class="bottom" href="creta_e-book.html">
           <img src="creta.png" class="img" title="Creta E-book">
           <p>E-book Creta</p>
-          <span class="lorem modal-trigger" data-id="creta">more...</span>
+          <span class="lorem modal-trigger" data-id="creta">Creta, storie miti e leggende della civiltà minoica è.....</span>
         </a>
 
         <a class="bottom" href="fisica_e-book.html">
           <img src="la_fica_che_ci_piace.png" class="img" title="Fisica E-book">
           <p>E-book Fisica</p>
-          <span class="lorem modal-trigger" data-id="fisica">more...</span>
+          <span class="lorem modal-trigger" data-id="fisica">Quaderno di fisica applicata è un e-book che raccogli.....</span>
         </a>
     </div>
 
@@ -313,7 +313,7 @@
 
       document.querySelectorAll(".modal-trigger").forEach(trigger => {
           trigger.addEventListener("click", (e) => {
-              e.preventDefault(); // Prevents the link from changing the page when clicking the text
+              e.preventDefault();
               const id = trigger.getAttribute("data-id");
               openModal(id);
           });
