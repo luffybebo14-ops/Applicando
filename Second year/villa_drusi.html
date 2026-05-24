@@ -1558,7 +1558,7 @@
 
         const counterNumber = document.querySelector(".counter-number");
 
-        fetch("https://api.countapi.xyz/hit/villa-drusi/visite")
+        fetch("https://api.countapi.dev/hit/villa_drusi/visite")
             .then(res => res.json())
             .then(data => {
                 counterNumber.textContent = data.value.toLocaleString("it-IT");
