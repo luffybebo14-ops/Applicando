@@ -541,7 +541,9 @@
 
         .review-content {
             max-width: 900px;
+            width: 100%;
             margin: 0 auto;
+            box-sizing: border-box;
         }
 
         .review-content h2 {
@@ -561,6 +563,8 @@
             grid-template-columns: 1fr;
             gap: 28px;
             align-items: center;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .review-rating {
@@ -569,13 +573,17 @@
             padding: 20px 18px;
             border-radius: 20px;
             border: 1px solid rgba(95, 45, 33, 0.12);
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
         }
 
         .star-rating {
             display: flex;
             flex-direction: row-reverse;
             justify-content: center;
-            gap: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
             margin: 16px 0 12px 0;
         }
 
@@ -584,7 +592,7 @@
         }
 
         .star {
-            font-size: 3.2rem;
+            font-size: clamp(2rem, 8vw, 3.2rem);
             cursor: pointer;
             color: #d4a574;
             transition: all 0.2s ease;
@@ -629,6 +637,9 @@
         .review-textarea-wrapper {
             display: flex;
             flex-direction: column;
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
         }
 
         .review-textarea {
@@ -661,6 +672,38 @@
             box-shadow: 0 0 0 3px rgba(143, 74, 50, 0.15), 0 8px 24px rgba(143, 74, 50, 0.2);
         }
 
+           .review-submit-btn {
+            margin-top: 14px;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 999px;
+            background: linear-gradient(180deg, var(--terracotta), var(--wine));
+            color: #fff8ee;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 14px 24px rgba(95, 45, 33, 0.22);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            align-self: flex-start;
+        }
+        .review-submit-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 28px rgba(95, 45, 33, 0.30);
+        }
+        .review-success-msg {
+            display: none;
+            margin-top: 18px;
+            padding: 14px 20px;
+            background: rgba(84, 99, 63, 0.12);
+            border: 1px solid rgba(84, 99, 63, 0.28);
+            border-radius: 14px;
+            color: var(--olive);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .review-success-msg.visible {
+            display: block;
+        }
         .counter-label {
             text-align: center;
         }
@@ -995,30 +1038,41 @@
             <div class="review-content">
                 <h2>Ti è piaciuto il sito?</h2>
                 <p class="review-question">Condividi il tuo gradimento con una valutazione:</p>
-                <div class="review-container">
+
+                <form class="review-container" action="https://formspree.io/f/xqejdlae" method="POST">
+
+                    <input type="hidden" name="Valutazione" id="hidden-rating" value="Non selezionata">
+
                     <div class="review-rating">
                         <div class="star-rating">
-                            <input type="radio" id="star5" name="rating" value="5">
+                            <input type="radio" id="star5" name="_rating_display" value="5">
                             <label for="star5" class="star" title="Eccezionale">★</label>
 
-                            <input type="radio" id="star4" name="rating" value="4">
+                            <input type="radio" id="star4" name="_rating_display" value="4">
                             <label for="star4" class="star" title="Molto buono">★</label>
 
-                            <input type="radio" id="star3" name="rating" value="3">
+                            <input type="radio" id="star3" name="_rating_display" value="3">
                             <label for="star3" class="star" title="Buono">★</label>
 
-                            <input type="radio" id="star2" name="rating" value="2">
+                            <input type="radio" id="star2" name="_rating_display" value="2">
                             <label for="star2" class="star" title="Accettabile">★</label>
 
-                            <input type="radio" id="star1" name="rating" value="1">
+                            <input type="radio" id="star1" name="_rating_display" value="1">
                             <label for="star1" class="star" title="Scarso">★</label>
                         </div>
                         <p class="rating-message"></p>
                     </div>
+
                     <div class="review-textarea-wrapper">
-                        <textarea class="review-textarea" placeholder="LA TUA RECENSIONE!"></textarea>
+                        <textarea class="review-textarea" name="Recensione" placeholder="LA TUA RECENSIONE!"></textarea>
+                        <button type="submit" class="review-submit-btn">Invia recensione</button>
                     </div>
-                </div>
+
+                </form>
+
+                <p class="review-success-msg" id="review-success">
+                    Grazie per la tua recensione! L'abbiamo ricevuta.
+                </p>
             </div>
         </section>
 
@@ -1448,9 +1502,12 @@
             });
         });
 
-                // Review Rating System
         const ratingInputs = document.querySelectorAll(".star-rating input[type='radio']");
         const ratingMessage = document.querySelector(".rating-message");
+        const hiddenRating = document.getElementById("hidden-rating");
+        const reviewForm = document.querySelector(".review-container");
+        const reviewSuccess = document.getElementById("review-success");
+
         const ratingMessages = {
             5: "Fantastico! Grazie per il feedback positivo! 🌟",
             4: "Ottimo! Siamo felici che ti sia piaciuto!",
@@ -1464,21 +1521,52 @@
                 const rating = input.value;
                 ratingMessage.textContent = ratingMessages[rating];
                 ratingMessage.classList.add("show");
+                hiddenRating.value = rating + " stelle";
             });
         });
 
-        // Page View Counter
-        const counterNumber = document.querySelector(".counter-number");
-        const counterViewsKey = "siteViews";
+        if (reviewForm) {
+            reviewForm.addEventListener("submit", async (e) => {
+                e.preventDefault();
 
-        let views = localStorage.getItem(counterViewsKey);
-        if (views === null) {
-            views = 1;
-        } else {
-            views = parseInt(views) + 1;
+                const formData = new FormData(reviewForm);
+                const submitBtn = reviewForm.querySelector(".review-submit-btn");
+
+                submitBtn.textContent = "Invio in corso…";
+                submitBtn.disabled = true;
+
+                try {
+                    const response = await fetch(reviewForm.action, {
+                        method: "POST",
+                        body: formData,
+                        headers: { "Accept": "application/json" }
+                    });
+
+                    if (response.ok) {
+                        reviewForm.style.display = "none";
+                        reviewSuccess.classList.add("visible");
+                    } else {
+                        submitBtn.textContent = "Errore — riprova";
+                        submitBtn.disabled = false;
+                    }
+                } catch (err) {
+                    submitBtn.textContent = "Errore di rete — riprova";
+                    submitBtn.disabled = false;
+                }
+            });
         }
-        localStorage.setItem(counterViewsKey, views);
-        counterNumber.textContent = views;
+
+        const counterNumber = document.querySelector(".counter-number");
+
+        fetch("https://api.countapi.xyz/hit/villa-drusi/visite")
+            .then(res => res.json())
+            .then(data => {
+                counterNumber.textContent = data.value.toLocaleString("it-IT");
+            })
+            .catch(() => {
+                // Se CountAPI non risponde, mostra un trattino invece di 0
+                counterNumber.textContent = "—";
+            });
     </script>
 
 </body>
