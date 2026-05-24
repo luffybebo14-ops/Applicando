@@ -1558,15 +1558,26 @@
 
         const counterNumber = document.querySelector(".counter-number");
 
-        fetch("https://api.countapi.dev/hit/villa_drusi/visite")
-            .then(res => res.json())
-            .then(data => {
-                counterNumber.textContent = data.value.toLocaleString("it-IT");
-            })
-            .catch(() => {
-                // Se CountAPI non risponde, mostra un trattino invece di 0
+        const SUPABASE_URL = "https://kaqlowvmmdtuwnnqvutu.supabase.co";
+        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImthcWxvd3ZtbWR0dXdubnF2dXR1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2NjI0NzIsImV4cCI6MjA5NTIzODQ3Mn0.A9Ap7gsP6fh_HP2QHLnRvostG0BaFput94--21YRVDY";
+
+        (async () => {
+            try {
+                const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/increment_visits`, {
+                    method: "POST",
+                    headers: {
+                        "apikey": SUPABASE_KEY,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ row_id: "villa-drusi" })
+                });
+                const newCount = await res.json();
+                counterNumber.textContent = Number(newCount).toLocaleString("it-IT");
+            } catch {
+                // Se Supabase non risponde, mostra un trattino invece di 0
                 counterNumber.textContent = "—";
-            });
+            }
+        })();
     </script>
 
 </body>
