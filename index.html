@@ -16,6 +16,7 @@
           background-size: cover;
           z-index: -1
         }
+
         .foreground {
           background-color: #f9f9f9c8;
           border-top-left-radius: 30px;
@@ -27,12 +28,14 @@
           margin: 0 auto;
           box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
+        
         body {
           font-family: "Segoe UI", Tahoma, Geneva, Verdana, Arial, sans-serif;
           margin: 0;
           min-height: 100vh;
           color: #1a1a3d;
         }
+        
         h3 {
           text-align: center;
           margin-bottom: 40px;
@@ -40,6 +43,7 @@
           font-size: 20px;
           color: #000000;
         }
+        
         #container {
             margin-top: 25%;
             margin-bottom: 15%;
@@ -47,6 +51,7 @@
             justify-content: space-between;
             width: 100%;
         }
+        
         a {
             display: inline-block;
             color: #1a1a3d;
@@ -67,25 +72,29 @@
         a:has(.lorem:hover) p {
             color: #1a1a3d;
         }
+        
         p {
-          font-weight: 700;
-          font-size: 18px;
-          margin: 0 0 12px 0;
-          text-align: left;
+            font-weight: 700;
+            font-size: 18px;
+            margin: 0 0 12px 0;
+            text-align: left;
         }
+        
         .lorem {
-          display: block;
-          text-align: left;
-          font-weight: 400;
-          font-size: 14px;
-          line-height: 1.5;
-          margin: 0;
+            display: block;
+            text-align: left;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
         }
+        
         img {
-          width: 100%;
-          height: auto;
-          margin-bottom: 12px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 12px;
         }
+        
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -95,9 +104,11 @@
             padding: 24px;
             z-index: 1000;
         }
+        
         .modal-overlay.is-open {
             display: grid;
         }
+        
         .modal {
             width: min(680px, 100%);
             max-height: min(90vh, 720px);
@@ -109,6 +120,7 @@
             padding: 28px 28px 22px;
             position: relative;
         }
+        
         .modal-close {
             position: absolute;
             top: 18px;
@@ -122,10 +134,12 @@
             border-radius: 50%;
             cursor: pointer;
         }
+        
         .modal-content {
             display: grid;
             gap: 18px;
         }
+        
         .modal-label {
             margin: 0;
             text-transform: uppercase;
@@ -133,22 +147,26 @@
             font-size: 0.75rem;
             color: #54633f;
         }
+        
         .modal h3 {
             margin: 0;
             font-size: clamp(1.8rem, 3vw, 2.4rem);
             color: #5f2d21;
             text-align: left;
         }
+        
         .modal-info {
             display: grid;
             gap: 14px;
         }
+        
         .modal-info p {
             margin: 0;
             line-height: 1.7;
             font-weight: normal;
             text-align: left;
         }
+        
         .modal-credits {
             font-style: italic;
             color: #666;
@@ -185,12 +203,12 @@
             <a href="First year\first_year.html">
                 <img title="1st_year" src="foto_prima.jpg">
                 <p>Primo Anno</p>
-                <span class="lorem modal-trigger" data-id="prima">More...</span>
+                <span class="lorem modal-trigger" data-id="prima">Credits</span>
             </a>
             <a href="Second year/second_year.html">
                 <img title="2nd_year" src="foto_class.jpg">
                 <p>Secondo Anno</p>
-                <span class="lorem modal-trigger" data-id="seconda">More...</span>
+                <span class="lorem modal-trigger" data-id="seconda">Credits</span>
             </a>
         </div>
     </div>
