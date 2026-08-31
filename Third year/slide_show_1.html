@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide show 1</title>
+    <link rel="icon" type="image/x-icon" href="photos\icon.png">
+    <style>
+        #background {
+            position: fixed;     
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(219, 219, 219);
+            background-size: cover;
+            z-index: -1;         
+        }
+
+        .foreground {
+            background-color: #f9f9f9c8;
+            border-top-left-radius: 30px;   
+            border-top-right-radius: 30px;
+            border-radius: 30px;
+            padding: 40px 20px;
+            max-width: 900px;
+            height: 782px;
+            margin: 0 auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .ebook-container {
+            width: 100%;
+            justify-self: center;
+            max-width: 850px;
+            height: 480px;
+            margin-top: 15%;
+            box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        #canvaVideo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden; 
+            color: #1a1a3d;
+            display: flex;
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        h3 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-size: 20px;
+            color: #000000;
+            flex-shrink: 0; 
+        }
+
+        
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-top: 20px;
+            flex-shrink: 0; 
+        }
+
+        .back_btn, #toggleBtn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #1a1a3d;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .back_btn {
+            background-color: #1a1a3d;
+            color: white;
+            border: none;
+        }
+
+        #toggleBtn {
+            background-color: white;
+            color: black;
+            border: 1px solid #000000;
+        }
+        @media (max-width: 768px) {
+            .foreground {
+                margin: 20px auto;
+                width: 90%;
+                padding: 30px 20px;
+                box-sizing: border-box;
+                height: auto;
+            }
+            .top-row, .bottom-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 40px;
+            }
+            .main-container { 
+            margin-top: 10%; 
+            }
+            a { 
+            max-width: 100%; 
+            width: 100%; 
+            }
+            .bottom-nav { 
+            flex-direction: row; 
+            gap: 80px; 
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="background"></div>
+
+    <div class="foreground">
+        <h3>SLIDESHOW 1</h3>
+
+        <div class="ebook-container">
+            <video id="canvaVideo" autoplay muted loop playsinline>
+                <source src="photos/" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        
+        <div class="button-container">
+            <a href="third_year_2.html">
+                <button class="back_btn">Back</button>
+            </a>
+            <button id="toggleBtn">Pause</button>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById('canvaVideo');
+        const button = document.getElementById('toggleBtn');
+
+        button.addEventListener('click', () => {
+            if (video.paused) {
+            video.play();
+            button.textContent = 'Pause';
+            } else {
+            video.pause();
+            button.textContent = 'Play';
+            }
+        });
+    </script>
+
+</body>
+</html>
